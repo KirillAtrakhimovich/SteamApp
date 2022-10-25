@@ -10,6 +10,7 @@ import UIKit
 
 final class NewsViewController: NiblessViewController {
     
+    
     private var newsView = NewsView()
     private let networkManager: NetworkManager
     private let persistenceManager: PersistenceManager
