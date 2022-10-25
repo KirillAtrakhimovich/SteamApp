@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class NewsViewController: NiblessViewController {
+final class NewsViewController: NiblessViewController {
     
     private var newsView = NewsView()
     private let networkManager: NetworkManager
