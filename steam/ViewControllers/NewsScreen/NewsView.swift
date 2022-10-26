@@ -6,8 +6,9 @@
 //
 
 import Foundation
-import UIKit
 import SnapKit
+import UIKit
+
 
 class NewsView: NiblessView {
     
