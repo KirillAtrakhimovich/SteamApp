@@ -14,7 +14,9 @@ class NewsDetailViewController: NiblessViewController {
     
     override func loadView() {
         view = newsDetailView
+        newsDetailView.setup()
     }
+    
     
 
 }

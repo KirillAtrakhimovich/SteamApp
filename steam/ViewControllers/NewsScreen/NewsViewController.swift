@@ -10,7 +10,6 @@ import UIKit
 
 final class NewsViewController: NiblessViewController {
     
-    
     private var newsView = NewsView()
     private let networkManager: NetworkManager
     private let persistenceManager: PersistenceManager
@@ -112,6 +111,9 @@ extension NewsViewController: UITableViewDataSource {
 
 extension NewsViewController:UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        let viewController = NewsDetailViewController()
+        navigationItem.backButtonTitle = ""
+                navigationController?.navigationBar.tintColor = .white
+        navigationController?.pushViewController(viewController, animated: true)
     }
 }
