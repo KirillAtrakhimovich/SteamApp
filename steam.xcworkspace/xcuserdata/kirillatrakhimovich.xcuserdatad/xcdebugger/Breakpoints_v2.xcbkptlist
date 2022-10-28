@@ -126,8 +126,8 @@
             filePath = "steam/ViewControllers/GamesListViewController/GamesListViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "189"
-            endingLineNumber = "189"
+            startingLineNumber = "182"
+            endingLineNumber = "182"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -142,8 +142,8 @@
             filePath = "steam/ViewControllers/GamesListViewController/GamesListViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "150"
-            endingLineNumber = "150"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
             landmarkName = "buttonTap(sender:)"
             landmarkType = "7">
          </BreakpointContent>
