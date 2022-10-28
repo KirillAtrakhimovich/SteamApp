@@ -270,9 +270,9 @@
             filePath = "steam/ViewControllers/NewsScreen/NewsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
-            landmarkName = "getNews()"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "loadView()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -287,9 +287,9 @@
             filePath = "steam/ViewControllers/NewsScreen/NewsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
-            landmarkName = "convertNews(_:)"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "successNewsRequest(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
