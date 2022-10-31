@@ -20,8 +20,17 @@ class NewsView: NiblessView {
         return tableView
     }()
     
+    var activityIndicator: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.color = .white
+        activityIndicator.style = .large
+        activityIndicator.hidesWhenStopped = true
+        return activityIndicator
+    }()
+    
     func setup(){
         setupTableView()
+        setupActivityIndicator()
         backgroundColor = Constants.backgroundColor
     }
     
@@ -32,6 +41,15 @@ class NewsView: NiblessView {
             constraints.leading.equalToSuperview().offset(10)
             constraints.trailing.equalToSuperview().offset(-10)
             constraints.bottom.equalTo(safeAreaLayoutGuide)
+        }
+    }
+    
+    private func setupActivityIndicator() {
+    self.addSubview(activityIndicator)
+    activityIndicator.snp.makeConstraints { constraints in
+        constraints.center.equalToSuperview()
+        constraints.height.equalTo(100)
+        constraints.width.equalTo(100)
         }
     }
 }
