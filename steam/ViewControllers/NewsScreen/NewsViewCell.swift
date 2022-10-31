@@ -49,9 +49,6 @@ class NewsViewCell: NiblessViewCell {
         gameNameLabel.setContentHuggingPriority(UILayoutPriority.defaultLow, for:.horizontal)
         dateLabel.setContentHuggingPriority(UILayoutPriority.defaultHigh, for:.horizontal)
         self.backgroundColor = .clear
-        isUserInteractionEnabled = true
-        selectionStyle = .none
-        contentView.isHidden = true
     }
 
     private func setupView() {
