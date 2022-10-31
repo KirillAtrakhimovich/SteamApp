@@ -35,7 +35,7 @@ class NewsDetailView: NiblessView {
         return authorTitle
     }()
     
-    let titleLabel: UILabel = {
+    var titleLabel: UILabel = {
         let titleLabel = UILabel()
         titleLabel.textColor = .white
         titleLabel.numberOfLines = 0
@@ -77,10 +77,11 @@ class NewsDetailView: NiblessView {
         setupContentView()
         setupGameNameLabel()
         setupAuthorLabel()
-        setuptitleLabel()
+        setupTitleLabel()
         setupDateLabel()
+        setupLineView()
         setupDiscriptionView()
-       
+        backgroundColor =  UIColor(named: "bgColor")
     }
     
     private func setupScrollView() {
@@ -115,7 +116,7 @@ class NewsDetailView: NiblessView {
         }
     }
     
-    private func setuptitleLabel() {
+    private func setupTitleLabel() {
         contentView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { constraints in
             constraints.top.equalTo(authorLabel.snp.bottom).offset(20)
@@ -151,6 +152,7 @@ class NewsDetailView: NiblessView {
             constraints.top.equalTo(lineView.snp.bottom).offset(20)
             constraints.leading.equalToSuperview().offset(10)
             constraints.trailing.equalToSuperview().inset(10)
+            constraints.bottom.equalToSuperview().inset(20)
         }
     }
     
