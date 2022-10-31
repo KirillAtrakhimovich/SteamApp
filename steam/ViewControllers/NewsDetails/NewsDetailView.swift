@@ -35,7 +35,7 @@ class NewsDetailView: NiblessView {
         return authorTitle
     }()
     
-    let titleLabel: UILabel = {
+    var titleLabel: UILabel = {
         let titleLabel = UILabel()
         titleLabel.textColor = .white
         titleLabel.numberOfLines = 0
