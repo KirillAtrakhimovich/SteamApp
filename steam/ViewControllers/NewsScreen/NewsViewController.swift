@@ -1,8 +1,15 @@
+//
+//  NewsViewController.swift
+//  steam
+//
+//  Created by Kirill Atrakhimovich on 17.08.22.
+//
 
 import Foundation
 import UIKit
 
 final class NewsViewController: NiblessViewController {
+    
     
     private var newsView = NewsView()
     private let networkManager: NetworkManager
@@ -28,12 +35,11 @@ final class NewsViewController: NiblessViewController {
         newsView.setup()
         setupTableSettings()
         namesIds = persistenceManager.getFavoriteGames().map {($0.name, $0.id)}
-        startIndicator()
         getNews()
     }
     
     private func getNews() {
-
+       
         let gamesID = namesIds.map { $0.1 }
         for id in gamesID {
             group.enter()
@@ -43,7 +49,6 @@ final class NewsViewController: NiblessViewController {
         group.notify(queue: .main) {
             guard let model = self.model else { return }
             model.news.sort { $0.date > $1.date }
-            self.stopIndicator()
             self.newsView.tableView.reloadData()
         }
     }
@@ -70,14 +75,6 @@ final class NewsViewController: NiblessViewController {
         }
     }
     
-    private func startIndicator() {
-        newsView.activityIndicator.startAnimating()
-    }
-    
-    private func stopIndicator() {
-        newsView.activityIndicator.stopAnimating()
-    }
-    
     private func convertNews(_ newsInfo: Items) -> [NewsItem] {
         var newsItems = [NewsItem]()
         for kal in newsInfo.newsitems {
@@ -97,7 +94,9 @@ final class NewsViewController: NiblessViewController {
 
 extension NewsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        isolationQueue.sync {
             return model?.news.count ?? 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -113,10 +112,6 @@ extension NewsViewController: UITableViewDataSource {
 
 extension NewsViewController:UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let viewController = NewsDetailViewController(networkManager: networkManager,
-                                                      persistenceManager: persistenceManager)
-        navigationItem.backButtonTitle = ""
-                navigationController?.navigationBar.tintColor = .white
-        navigationController?.pushViewController(viewController, animated: true)
+        
     }
 }
