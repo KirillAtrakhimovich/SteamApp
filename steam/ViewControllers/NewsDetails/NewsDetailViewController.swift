@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import WebKit
 
 final class NewsDetailViewController: NiblessViewController {
     
@@ -14,6 +15,7 @@ final class NewsDetailViewController: NiblessViewController {
     private let persistenceManager: PersistenceManager
     private let model: NewsItem
     let webView = WKWebView()
+    
     init(persistenceManager: PersistenceManager, model: NewsItem) {
         self.persistenceManager = persistenceManager
         self.model = model
