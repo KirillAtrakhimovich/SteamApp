@@ -8,16 +8,15 @@
 import Foundation
 import UIKit
 
-class NewsDetailViewController: NiblessViewController {
+final class NewsDetailViewController: NiblessViewController {
     
-    private var newsDetailView = NewsDetailView()
-    private let networkManager: NetworkManager
+    private let newsDetailView = NewsDetailView()
     private let persistenceManager: PersistenceManager
-    private var model: NewsModel?
-    
-    init(networkManager: NetworkManager, persistenceManager: PersistenceManager) {
-        self.networkManager = networkManager
+    private let model: NewsItem
+    let webView = WKWebView()
+    init(persistenceManager: PersistenceManager, model: NewsItem) {
         self.persistenceManager = persistenceManager
+        self.model = model
         super.init()
     }
     
@@ -27,9 +26,37 @@ class NewsDetailViewController: NiblessViewController {
     
     override func viewDidLoad() {
         newsDetailView.setup()
-        
-       
+        updateView()
     }
     
-
+    func updateView() {
+        DispatchQueue.main.async { [weak self] in
+            self?.uploadGameNameLabel()
+            self?.uploadAuthorLabel()
+            self?.uploadTitleLabel()
+            self?.uploadDateLabel()
+            self?.uploadDiscriptionLabel()
+        }
+    }
+    
+    private func uploadGameNameLabel() {
+        self.newsDetailView.gameNameLabel.text = model.name
+    }
+    
+    private func uploadAuthorLabel() {
+        self.newsDetailView.authorLabel.text = model.author
+    }
+    
+    private func uploadTitleLabel(){
+        self.newsDetailView.titleLabel.text = model.title
+    }
+    
+    private func uploadDateLabel(){
+        self.newsDetailView.dateLabel.text = "\(model.date)"
+    }
+    
+    private func uploadDiscriptionLabel(){
+        self.newsDetailView.discriptionLabel.text = model.contents
+        print(model.contents)
+    }
 }
