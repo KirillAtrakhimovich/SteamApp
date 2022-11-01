@@ -81,6 +81,7 @@ class NewsDetailView: NiblessView {
         setupDateLabel()
         setupLineView()
         setupDiscriptionView()
+        setupDiscriptionLabel()
         backgroundColor =  UIColor(named: "bgColor")
     }
     
@@ -121,7 +122,6 @@ class NewsDetailView: NiblessView {
         titleLabel.snp.makeConstraints { constraints in
             constraints.top.equalTo(authorLabel.snp.bottom).offset(20)
             constraints.leading.equalToSuperview().offset(5)
-            constraints.bottom.equalToSuperview().offset(-10)
             constraints.trailing.equalToSuperview().offset(-5)
         }
     }
