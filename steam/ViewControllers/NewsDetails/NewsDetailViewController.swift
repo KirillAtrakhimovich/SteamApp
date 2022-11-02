@@ -9,12 +9,11 @@ import Foundation
 import UIKit
 import WebKit
 
-final class NewsDetailViewController: NiblessViewController {
+final class NewsDetailViewController: NiblessViewController, WKUIDelegate, WKNavigationDelegate {
     
     private let newsDetailView = NewsDetailView()
     private let persistenceManager: PersistenceManager
     private let model: NewsItem
-    let webView = WKWebView()
     
     init(persistenceManager: PersistenceManager, model: NewsItem) {
         self.persistenceManager = persistenceManager
@@ -37,7 +36,8 @@ final class NewsDetailViewController: NiblessViewController {
             self?.uploadAuthorLabel()
             self?.uploadTitleLabel()
             self?.uploadDateLabel()
-            self?.uploadDiscriptionLabel()
+//            self?.uploadDiscriptionLabel()
+            self?.uploadWebView()
         }
     }
     
@@ -61,4 +61,23 @@ final class NewsDetailViewController: NiblessViewController {
         self.newsDetailView.discriptionLabel.text = model.contents
         print(model.contents)
     }
+    
+    private func uploadWebView() {
+        let font = UIFont.systemFont(ofSize: 40)
+
+                let fontName =  "-apple-system"
+                let linkColor = UIColor.blue
+                let linkStyle = "<style>a:link { color: \(linkColor); }</style>"
+
+                let htmlString = "\(linkStyle)<span style=\"font-family: \(fontName); font-size: \(font.pointSize); color: #FFFFFF\">\(model.contents)</span>"
+
+        self.newsDetailView.webView.loadHTMLString(htmlString, baseURL: nil)
+        self.newsDetailView.webView.uiDelegate = self
+        self.newsDetailView.webView.allowsBackForwardNavigationGestures = true
+        self.newsDetailView.webView.allowsLinkPreview = true
+        self.newsDetailView.webView.navigationDelegate = self
+    }
 }
+
+
+

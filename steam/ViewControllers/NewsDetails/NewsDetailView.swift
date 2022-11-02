@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import SnapKit
+import WebKit
 
 class NewsDetailView: NiblessView {
     
@@ -68,6 +69,11 @@ class NewsDetailView: NiblessView {
         return discriptionLabel
     }()
     
+    private(set) var webView: WKWebView = {
+        let webView = WKWebView()
+        return webView
+    }()
+    
     func setup() {
         gameNameLabel.setContentCompressionResistancePriority(UILayoutPriority.defaultLow, for: .horizontal)
         dateLabel.setContentCompressionResistancePriority(UILayoutPriority.defaultHigh, for: .horizontal)
@@ -80,8 +86,9 @@ class NewsDetailView: NiblessView {
         setupTitleLabel()
         setupDateLabel()
         setupLineView()
-        setupDiscriptionView()
-        setupDiscriptionLabel()
+//        setupDiscriptionView()
+//        setupDiscriptionLabel()
+        setupWebView()
         backgroundColor =  UIColor(named: "bgColor")
     }
     
@@ -160,6 +167,16 @@ class NewsDetailView: NiblessView {
         discriptionView.addSubview(discriptionLabel)
         discriptionLabel.snp.makeConstraints { constraints in
             constraints.top.leading.trailing.bottom.equalToSuperview()
+        }
+    }
+    
+    private func setupWebView(){
+        contentView.addSubview(webView)
+        webView.snp.makeConstraints { constraints in
+            constraints.top.equalTo(lineView.snp.bottom).offset(20)
+            constraints.leading.equalToSuperview().offset(10)
+            constraints.trailing.equalToSuperview().inset(10)
+            constraints.bottom.equalToSuperview().inset(20)
         }
     }
     
