@@ -33,6 +33,7 @@ class NewsDetailView: NiblessView {
         let authorTitle = UILabel()
         authorTitle.textColor = .white
         authorTitle.numberOfLines = 0
+        authorTitle.font = UIFont.italicSystemFont(ofSize: 15)
         return authorTitle
     }()
     
@@ -40,6 +41,7 @@ class NewsDetailView: NiblessView {
         let titleLabel = UILabel()
         titleLabel.textColor = .white
         titleLabel.numberOfLines = 0
+        titleLabel.font = UIFont(name:"HelveticaNeue-Bold", size: 19.0)
         return titleLabel
     }()
     
@@ -65,14 +67,14 @@ class NewsDetailView: NiblessView {
         let discriptionLabel = UILabel()
         discriptionLabel.numberOfLines = 0
         discriptionLabel.textColor = UIColor.white
-        discriptionLabel.font = discriptionLabel.font.withSize(25.0)
+        discriptionLabel.font = UIFont(name:"ArialHebrew-Light", size: 25.0)
         return discriptionLabel
     }()
     
-    private(set) var webView: WKWebView = {
-        let webView = WKWebView()
-        return webView
-    }()
+//    private(set) var webView: WKWebView = {
+//        let webView = WKWebView()
+//        return webView
+//    }()
     
     func setup() {
         gameNameLabel.setContentCompressionResistancePriority(UILayoutPriority.defaultLow, for: .horizontal)
@@ -86,9 +88,9 @@ class NewsDetailView: NiblessView {
         setupTitleLabel()
         setupDateLabel()
         setupLineView()
-//        setupDiscriptionView()
-//        setupDiscriptionLabel()
-        setupWebView()
+        setupDiscriptionView()
+        setupDiscriptionLabel()
+//        setupWebView()
         backgroundColor =  UIColor(named: "bgColor")
     }
     
@@ -146,7 +148,7 @@ class NewsDetailView: NiblessView {
     private func setupLineView(){
         contentView.addSubview(lineView)
         lineView.snp.makeConstraints { constraints in
-            constraints.top.equalTo(titleLabel.snp.bottom).offset(20)
+            constraints.top.equalTo(titleLabel.snp.bottom).offset(10)
             constraints.leading.equalToSuperview().offset(10)
             constraints.trailing.equalToSuperview().inset(10)
             constraints.height.equalTo(1)
@@ -156,7 +158,7 @@ class NewsDetailView: NiblessView {
     private func setupDiscriptionView(){
         contentView.addSubview(discriptionView)
         discriptionView.snp.makeConstraints { constraints in
-            constraints.top.equalTo(lineView.snp.bottom).offset(20)
+            constraints.top.equalTo(lineView.snp.bottom).offset(10)
             constraints.leading.equalToSuperview().offset(10)
             constraints.trailing.equalToSuperview().inset(10)
             constraints.bottom.equalToSuperview().inset(20)
@@ -170,14 +172,14 @@ class NewsDetailView: NiblessView {
         }
     }
     
-    private func setupWebView(){
-        contentView.addSubview(webView)
-        webView.snp.makeConstraints { constraints in
-            constraints.top.equalTo(lineView.snp.bottom).offset(20)
-            constraints.leading.equalToSuperview().offset(10)
-            constraints.trailing.equalToSuperview().inset(10)
-            constraints.bottom.equalToSuperview().inset(20)
-        }
-    }
+//    private func setupWebView(){
+//        contentView.addSubview(webView)
+//        webView.snp.makeConstraints { constraints in
+//            constraints.top.equalTo(lineView.snp.bottom).offset(20)
+//            constraints.leading.equalToSuperview().offset(10)
+//            constraints.trailing.equalToSuperview().inset(10)
+//            constraints.bottom.equalToSuperview().inset(20)
+//        }
+//    }
     
 }
