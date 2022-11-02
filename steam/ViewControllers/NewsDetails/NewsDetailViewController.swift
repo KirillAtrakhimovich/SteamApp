@@ -9,14 +9,12 @@ import Foundation
 import UIKit
 import WebKit
 
-final class NewsDetailViewController: NiblessViewController, WKUIDelegate, WKNavigationDelegate {
+final class NewsDetailViewController: NiblessViewController{
     
     private let newsDetailView = NewsDetailView()
-    private let persistenceManager: PersistenceManager
     private let model: NewsItem
     
-    init(persistenceManager: PersistenceManager, model: NewsItem) {
-        self.persistenceManager = persistenceManager
+    init(model: NewsItem) {
         self.model = model
         super.init()
     }
@@ -31,14 +29,26 @@ final class NewsDetailViewController: NiblessViewController, WKUIDelegate, WKNav
     }
     
     func updateView() {
+        
         DispatchQueue.main.async { [weak self] in
             self?.uploadGameNameLabel()
             self?.uploadAuthorLabel()
             self?.uploadTitleLabel()
             self?.uploadDateLabel()
-//            self?.uploadDiscriptionLabel()
-            self?.uploadWebView()
+            self?.uploadDiscriptionLabel()
         }
+    }
+    
+    private func getFormatedDate(dateString: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
+
+        if let newDate = dateFormatter.date(from: dateString) {
+            dateFormatter.dateFormat = "MMM d, yyyy"
+            let stringDate = dateFormatter.string(from: newDate)
+            return stringDate
+        }
+        return ""
     }
     
     private func uploadGameNameLabel() {
@@ -51,32 +61,33 @@ final class NewsDetailViewController: NiblessViewController, WKUIDelegate, WKNav
     
     private func uploadTitleLabel(){
         self.newsDetailView.titleLabel.text = model.title
+        self.navigationItem.title = model.title
     }
     
     private func uploadDateLabel(){
-        self.newsDetailView.dateLabel.text = "\(model.date)"
+        let date = NSDate(timeIntervalSince1970: TimeInterval(model.date))
+        self.newsDetailView.dateLabel.text = getFormatedDate(dateString: "\(date)")
     }
     
     private func uploadDiscriptionLabel(){
         self.newsDetailView.discriptionLabel.text = model.contents
-        print(model.contents)
     }
     
-    private func uploadWebView() {
-        let font = UIFont.systemFont(ofSize: 40)
-
-                let fontName =  "-apple-system"
-                let linkColor = UIColor.blue
-                let linkStyle = "<style>a:link { color: \(linkColor); }</style>"
-
-                let htmlString = "\(linkStyle)<span style=\"font-family: \(fontName); font-size: \(font.pointSize); color: #FFFFFF\">\(model.contents)</span>"
-
-        self.newsDetailView.webView.loadHTMLString(htmlString, baseURL: nil)
-        self.newsDetailView.webView.uiDelegate = self
-        self.newsDetailView.webView.allowsBackForwardNavigationGestures = true
-        self.newsDetailView.webView.allowsLinkPreview = true
-        self.newsDetailView.webView.navigationDelegate = self
-    }
+//    private func uploadWebView() {
+//        let font = UIFont.systemFont(ofSize: 40)
+//
+//                let fontName =  "-apple-system"
+//                let linkColor = UIColor.blue
+//                let linkStyle = "<style>a:link { color: \(linkColor); }</style>"
+//
+//                let htmlString = "\(linkStyle)<span style=\"font-family: \(fontName); font-size: \(font.pointSize); color: #FFFFFF\">\(model.contents)</span>"
+//
+//        self.newsDetailView.webView.loadHTMLString(htmlString, baseURL: nil)
+//        self.newsDetailView.webView.uiDelegate = self
+//        self.newsDetailView.webView.allowsBackForwardNavigationGestures = true
+//        self.newsDetailView.webView.allowsLinkPreview = true
+//        self.newsDetailView.webView.navigationDelegate = self
+//    }
 }
 
 

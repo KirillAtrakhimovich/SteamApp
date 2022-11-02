@@ -115,8 +115,7 @@ extension NewsViewController:UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let model = model else { return }
         let item = model.news[indexPath.row]
-        let viewController = NewsDetailViewController(persistenceManager: persistenceManager,
-                                                      model: item)
+        let viewController = NewsDetailViewController(model: item)
         navigationItem.backButtonTitle = ""
                 navigationController?.navigationBar.tintColor = .white
         navigationController?.pushViewController(viewController, animated: true)
