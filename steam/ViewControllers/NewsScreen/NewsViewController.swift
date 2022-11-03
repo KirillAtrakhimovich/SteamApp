@@ -5,6 +5,7 @@ import UIKit
 final class NewsViewController: NiblessViewController {
     
     private var newsView = NewsView()
+    private var newsFilterView = NewsFilterView()
     private let networkManager: NetworkManager
     private let persistenceManager: PersistenceManager
     private var model: NewsModel?
@@ -26,10 +27,30 @@ final class NewsViewController: NiblessViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         newsView.setup()
+        navItemSettings()
         setupTableSettings()
         namesIds = persistenceManager.getFavoriteGames().map {($0.name, $0.id)}
         startIndicator()
         getNews()
+    }
+    
+    private func navItemSettings() {
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "Filter", style: .done, target: self, action: #selector(self.filter(sender:)))
+        self.navigationItem.rightBarButtonItem?.tintColor = .white
+        newsFilterView.saveButton.addTarget(self, action: #selector(buttonTap), for: .touchUpInside)
+    }
+    
+    @objc func buttonTap() {
+        newsFilterView.removeFromSuperview()
+    }
+    
+    @objc func filter(sender: UIBarButtonItem) {
+        newsFilterView.setup()
+        newsView.addSubview(newsFilterView)
+        newsFilterView.frame = CGRect(x: view.frame.width / 6, y: view.frame.height / 4, width: view.frame.width / 1.5, height: view.frame.height / 2)
+        newsFilterView.backgroundColor = UIColor(named: "bgColor")
+        newsFilterView.layer.borderWidth = 1
+        newsFilterView.layer.borderColor = UIColor.white.cgColor
     }
     
     private func getNews() {
@@ -92,7 +113,11 @@ final class NewsViewController: NiblessViewController {
         newsView.tableView.dataSource = self
         newsView.tableView.delegate = self
         newsView.tableView.separatorColor = UIColor.white
+//        newsFilterView.tableView.dataSource = self
+//        newsFilterView.tableView.delegate = self
+//        newsFilterView.tableView.separatorColor = UIColor.white
     }
+        
 }
 
 extension NewsViewController: UITableViewDataSource {
@@ -117,7 +142,7 @@ extension NewsViewController:UITableViewDelegate {
         let item = model.news[indexPath.row]
         let viewController = NewsDetailViewController(model: item)
         navigationItem.backButtonTitle = ""
-                navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.tintColor = .white
         navigationController?.pushViewController(viewController, animated: true)
     }
 }
