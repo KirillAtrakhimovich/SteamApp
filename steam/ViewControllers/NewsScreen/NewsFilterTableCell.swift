@@ -6,3 +6,10 @@
 //
 
 import Foundation
+import UIKit
+
+class NewsFilterTableCell:NiblessViewCell {
+    static let identifier = "NewsFilterTableCell"
+    
+    
+}
