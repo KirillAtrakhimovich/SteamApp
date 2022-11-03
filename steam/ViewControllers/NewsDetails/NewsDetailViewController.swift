@@ -36,6 +36,7 @@ final class NewsDetailViewController: NiblessViewController{
             self?.uploadTitleLabel()
             self?.uploadDateLabel()
             self?.uploadDiscriptionLabel()
+//            self?.uploadWebView()
         }
     }
     
