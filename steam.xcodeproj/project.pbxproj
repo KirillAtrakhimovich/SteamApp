@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		281450D42913F3FA0033A37E /* NewsFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 281450D32913F3FA0033A37E /* NewsFilterView.swift */; };
+		281450D62913F9410033A37E /* NewsFilterTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 281450D52913F9410033A37E /* NewsFilterTableCell.swift */; };
 		282F622E27CFC6C9001637B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282F622D27CFC6C9001637B3 /* AppDelegate.swift */; };
 		282F623027CFC6C9001637B3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282F622F27CFC6C9001637B3 /* SceneDelegate.swift */; };
 		282F623727CFC6CA001637B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 282F623627CFC6CA001637B3 /* Assets.xcassets */; };
@@ -50,6 +52,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		281450D32913F3FA0033A37E /* NewsFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFilterView.swift; sourceTree = "<group>"; };
+		281450D52913F9410033A37E /* NewsFilterTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFilterTableCell.swift; sourceTree = "<group>"; };
 		282F622A27CFC6C9001637B3 /* steam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = steam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		282F622D27CFC6C9001637B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		282F622F27CFC6C9001637B3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -222,6 +226,8 @@
 				2893CFA928AD0C67002BEE9B /* NewsViewController.swift */,
 				2893CFAB28AD0C75002BEE9B /* NewsView.swift */,
 				2858992828D0CBF5007C580C /* NewsViewCell.swift */,
+				281450D32913F3FA0033A37E /* NewsFilterView.swift */,
+				281450D52913F9410033A37E /* NewsFilterTableCell.swift */,
 			);
 			path = NewsScreen;
 			sourceTree = "<group>";
@@ -450,8 +456,10 @@
 				285B884C28D0945D00BB88A1 /* Notification.swift in Sources */,
 				285E919228DB360A009E2664 /* NewsDetailViewController.swift in Sources */,
 				286792E728A632DC0043572E /* ScreenshotDetailView.swift in Sources */,
+				281450D42913F3FA0033A37E /* NewsFilterView.swift in Sources */,
 				28629FE528BDF45800A2D4B7 /* FavoriteListViewCell.swift in Sources */,
 				2893CFB728AE3A62002BEE9B /* FavoriteButton.swift in Sources */,
+				281450D62913F9410033A37E /* NewsFilterTableCell.swift in Sources */,
 				2867931C28ACF01F0043572E /* FavoriteListView.swift in Sources */,
 				282F624827CFD282001637B3 /* TabBarController.swift in Sources */,
 				2893CFAA28AD0C67002BEE9B /* NewsViewController.swift in Sources */,
