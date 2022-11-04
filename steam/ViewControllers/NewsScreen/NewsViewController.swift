@@ -53,6 +53,7 @@ final class NewsViewController: NiblessViewController {
         newsFilterView.backgroundColor = UIColor(named: "bgColor")
         newsFilterView.layer.borderWidth = 1
         newsFilterView.layer.borderColor = UIColor.white.cgColor
+        newsFilterView.tableView.separatorColor = .clear
     }
     
     private func getNews() {
