@@ -107,8 +107,8 @@ extension FavoriteListViewController : UITableViewDataSource {
         cell.contentView.isHidden = true
         print(item.id)
         return cell
-        
     }
+    
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .delete
     }

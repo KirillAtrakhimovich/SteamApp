@@ -20,7 +20,7 @@ final class TabBarController: UITabBarController {
         viewControllers = [
             createNavController(for: GamesListViewController(networkManager: NetworkManager(), persistenceManager: PersistenceManager()), image: Constants.listIcon),
             createNavController(for: FavoriteListViewController(), title: NSLocalizedString(Constants.favsTitle, comment: Constants.empty), image: Constants.favsIcon),
-            createNavController(for: NewsViewController(networkManager: NetworkManager(), persistenceManager: PersistenceManager()), title: NSLocalizedString(Constants.newsTitle, comment: Constants.empty), image: Constants.newsIcon)
+            createNavController(for: NewsViewController(networkManager: NetworkManager(), persistenceManager: PersistenceManager(), filterTableController: NewsFilterTableController(persist: PersistenceManager())), title: NSLocalizedString(Constants.newsTitle, comment: Constants.empty), image: Constants.newsIcon)
         ]
     }
 
