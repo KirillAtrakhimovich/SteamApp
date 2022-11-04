@@ -11,12 +11,14 @@ final class NewsViewController: NiblessViewController {
     private var model: NewsModel?
     private var namesIds = [(String,Int)]()
     private let group = DispatchGroup()
+    private let filterTableController: NewsFilterTableController
     
     private let isolationQueue = DispatchQueue(label: "newsRequestQueue",attributes: .concurrent)
    
-    init(networkManager: NetworkManager, persistenceManager: PersistenceManager) {
+    init(networkManager: NetworkManager, persistenceManager: PersistenceManager, filterTableController: NewsFilterTableController) {
         self.networkManager = networkManager
         self.persistenceManager = persistenceManager
+        self.filterTableController = filterTableController
         super.init()
     }
     
@@ -113,9 +115,10 @@ final class NewsViewController: NiblessViewController {
         newsView.tableView.dataSource = self
         newsView.tableView.delegate = self
         newsView.tableView.separatorColor = UIColor.white
-//        newsFilterView.tableView.dataSource = self
-//        newsFilterView.tableView.delegate = self
-//        newsFilterView.tableView.separatorColor = UIColor.white
+        newsFilterView.tableView.dataSource = filterTableController
+        newsFilterView.tableView.delegate = filterTableController
+        newsFilterView.tableView.separatorColor = UIColor.white
+        newsFilterView.tableView.reloadData()
     }
         
 }
