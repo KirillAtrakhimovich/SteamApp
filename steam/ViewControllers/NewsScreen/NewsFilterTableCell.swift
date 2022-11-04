@@ -18,10 +18,20 @@ class NewsFilterTableCell: NiblessViewCell {
         return label
     }()
     
+    let checkButton: UIButton = {
+        let checkButton = UIButton()
+        checkButton.setBackgroundImage(UIImage(systemName: "checkmark"), for: .normal)
+        return checkButton
+    }()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .default, reuseIdentifier: "NewsFilterTableCell")
         setupView()
         self.backgroundColor = .clear
+        gameTitle.setContentCompressionResistancePriority(UILayoutPriority.defaultLow, for: .horizontal)
+        checkButton.setContentCompressionResistancePriority(UILayoutPriority.defaultHigh, for: .horizontal)
+        gameTitle.setContentHuggingPriority(UILayoutPriority.defaultLow, for:.horizontal)
+        checkButton.setContentHuggingPriority(UILayoutPriority.defaultHigh, for:.horizontal)
         
     }
     
@@ -31,8 +41,15 @@ class NewsFilterTableCell: NiblessViewCell {
             constraints.top.equalToSuperview().offset(10)
             constraints.leading.equalToSuperview().offset(20)
             constraints.bottom.equalToSuperview().offset(-10)
-            constraints.trailing.equalToSuperview().offset(-20)
         }
+        
+        self.addSubview(checkButton)
+        checkButton.snp.makeConstraints { constraints in
+            constraints.leading.equalTo(gameTitle.snp.trailing).offset(20)
+            constraints.trailing.equalToSuperview().offset(-20)
+            constraints.centerY.equalToSuperview()
+        }
+        
     }
 
     func fillCell(game: LocalFavoriteGame) {
