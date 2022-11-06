@@ -1,4 +1,3 @@
-
 import Foundation
 import UIKit
 
@@ -121,7 +120,6 @@ final class NewsViewController: NiblessViewController {
         newsFilterView.tableView.separatorColor = UIColor.white
         newsFilterView.tableView.reloadData()
     }
-        
 }
 
 extension NewsViewController: UITableViewDataSource {
