@@ -1,10 +1,3 @@
-//
-//  NewsFilterTableCell.swift
-//  steam
-//
-//  Created by Kirill Atrakhimovich on 3.11.22.
-//
-
 import Foundation
 import UIKit
 
@@ -32,7 +25,6 @@ class NewsFilterTableCell: NiblessViewCell {
         checkButton.setContentCompressionResistancePriority(UILayoutPriority.defaultHigh, for: .horizontal)
         gameTitle.setContentHuggingPriority(UILayoutPriority.defaultLow, for:.horizontal)
         checkButton.setContentHuggingPriority(UILayoutPriority.defaultHigh, for:.horizontal)
-        
     }
     
     private func setupView() {
@@ -49,7 +41,6 @@ class NewsFilterTableCell: NiblessViewCell {
             constraints.trailing.equalToSuperview().offset(-20)
             constraints.centerY.equalToSuperview()
         }
-        
     }
 
     func fillCell(game: LocalFavoriteGame) {

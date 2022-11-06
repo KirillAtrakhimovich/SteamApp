@@ -1,10 +1,3 @@
-//
-//  FavoriteListViewCell.swift
-//  steam
-//
-//  Created by Kirill Atrakhimovich on 30.08.22.
-//
-
 import Foundation
 import UIKit
 

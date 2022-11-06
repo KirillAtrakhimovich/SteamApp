@@ -1,14 +1,6 @@
-//
-//  NewsView.swift
-//  steam
-//
-//  Created by Kirill Atrakhimovich on 17.08.22.
-//
-
 import Foundation
 import SnapKit
 import UIKit
-
 
 class NewsView: NiblessView {
     
