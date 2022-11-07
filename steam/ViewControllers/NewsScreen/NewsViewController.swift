@@ -11,13 +11,17 @@ final class NewsViewController: NiblessViewController {
     private var namesIds = [(String,Int)]()
     private let group = DispatchGroup()
     private let filterTableController: NewsFilterTableController
+    var blurEffect = UIBlurEffect(style: UIBlurEffect.Style.dark)
+    lazy var blurEffectView = UIVisualEffectView(effect: blurEffect)
+    private let tableViewCell: NewsFilterTableCell
     
     private let isolationQueue = DispatchQueue(label: "newsRequestQueue",attributes: .concurrent)
    
-    init(networkManager: NetworkManager, persistenceManager: PersistenceManager, filterTableController: NewsFilterTableController) {
+    init(networkManager: NetworkManager, persistenceManager: PersistenceManager, filterTableController: NewsFilterTableController, tableViewCell: NewsFilterTableCell) {
         self.networkManager = networkManager
         self.persistenceManager = persistenceManager
         self.filterTableController = filterTableController
+        self.tableViewCell = tableViewCell
         super.init()
     }
     
@@ -33,6 +37,8 @@ final class NewsViewController: NiblessViewController {
         namesIds = persistenceManager.getFavoriteGames().map {($0.name, $0.id)}
         startIndicator()
         getNews()
+        changeIcon(isFavorite: true)
+        
     }
     
     private func navItemSettings() {
@@ -42,17 +48,25 @@ final class NewsViewController: NiblessViewController {
     }
     
     @objc func buttonTap() {
+        blurEffectView.alpha = 0
         newsFilterView.removeFromSuperview()
     }
     
     @objc func filter(sender: UIBarButtonItem) {
         newsFilterView.setup()
-        newsView.addSubview(newsFilterView)
+        
         newsFilterView.frame = CGRect(x: view.frame.width / 6, y: view.frame.height / 4, width: view.frame.width / 1.5, height: view.frame.height / 2)
         newsFilterView.backgroundColor = UIColor(named: "bgColor")
         newsFilterView.layer.borderWidth = 1
         newsFilterView.layer.borderColor = UIColor.white.cgColor
         newsFilterView.tableView.separatorColor = .clear
+        
+        blurEffectView.frame = view.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.addSubview(blurEffectView)
+        blurEffectView.alpha = 0.7
+        newsView.addSubview(newsFilterView)
+        
     }
     
     private func getNews() {
@@ -105,10 +119,19 @@ final class NewsViewController: NiblessViewController {
         var newsItems = [NewsItem]()
         for kal in newsInfo.newsitems {
             let name = namesIds.filter { $0.1 == newsInfo.appid }.first.map { $0.0 } ?? "1"
-            let model = NewsItem(id: kal.appid, name: name, title: kal.title, author: kal.author, date: kal.date, contents: kal.contents)
+            let model = NewsItem(id: kal.appid, name: name, title: kal.title, author: kal.author, date: kal.date, contents: kal.contents, checked: true)
             newsItems.append(model)
         }
         return newsItems
+    }
+    
+    func changeIcon(isFavorite: Bool) {
+        switch isFavorite {
+        case true:
+            tableViewCell.checkButton.setBackgroundImage(UIImage(systemName: "checkmark"), for: .normal)
+        case false:
+            tableViewCell.checkButton.setBackgroundImage(UIImage(systemName: ""), for: .normal)
+        }
     }
     
     private func setupTableSettings() {
