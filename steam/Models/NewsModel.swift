@@ -18,4 +18,5 @@ struct NewsItem {
     let author: String
     let date: Int
     let contents: String
+    let checked: Bool
 }

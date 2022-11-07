@@ -13,7 +13,7 @@ class NewsFilterTableCell: NiblessViewCell {
     
     let checkButton: UIButton = {
         let checkButton = UIButton()
-        checkButton.setBackgroundImage(UIImage(systemName: "checkmark"), for: .normal)
+//        checkButton.setBackgroundImage(UIImage(systemName: "checkmark"), for: .normal)
         return checkButton
     }()
     
