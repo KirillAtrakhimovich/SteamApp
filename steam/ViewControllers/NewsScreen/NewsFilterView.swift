@@ -8,7 +8,7 @@ class NewsFilterView: NiblessView {
         let tableView = UITableView()
         tableView.backgroundColor = UIColor.clear
         tableView.register(NewsFilterTableCell.self, forCellReuseIdentifier: "NewsFilterTableCell")
-        tableView.separatorColor = UIColor.red
+        tableView.separatorColor = .clear
         return tableView
     }()
     

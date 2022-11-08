@@ -13,7 +13,9 @@ class NewsFilterTableCell: NiblessViewCell {
     
     let checkButton: UIButton = {
         let checkButton = UIButton()
-//        checkButton.setBackgroundImage(UIImage(systemName: "checkmark"), for: .normal)
+        checkButton.backgroundColor = UIColor(named: "navBarColor")
+//        checkButton.setBackgroundImage(UIImage(systemName: "box"), for: .normal)
+        checkButton.setBackgroundImage(UIImage(systemName: "checkmark"), for: .selected)
         return checkButton
     }()
     
@@ -40,10 +42,13 @@ class NewsFilterTableCell: NiblessViewCell {
             constraints.leading.equalTo(gameTitle.snp.trailing).offset(20)
             constraints.trailing.equalToSuperview().offset(-20)
             constraints.centerY.equalToSuperview()
+            constraints.width.equalTo(checkButton.snp.height)
+            constraints.height.equalTo(20)
         }
     }
 
     func fillCell(game: LocalFavoriteGame) {
         gameTitle.text = game.name
+        
     }
 }

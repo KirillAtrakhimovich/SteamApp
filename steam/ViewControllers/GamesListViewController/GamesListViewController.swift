@@ -12,7 +12,6 @@ final class GamesListViewController: NiblessViewController {
     }
     private var favoriteGames = [Favorite]()
    
-    
     init(networkManager: NetworkManager, persistenceManager: PersistenceManager) {
         self.networkManager = networkManager
         self.persistenceManager = persistenceManager

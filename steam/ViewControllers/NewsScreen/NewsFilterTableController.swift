@@ -5,9 +5,10 @@ final class NewsFilterTableController: NSObject, UITableViewDelegate, UITableVie
   
     private var model: FavGameListModel?
     private let persist: PersistenceManager
-    
-    init(persist: PersistenceManager) {
+    private let filterCell: NewsFilterTableCell
+    init(persist: PersistenceManager, filterCell: NewsFilterTableCell) {
         self.persist = persist
+        self.filterCell = filterCell
         super.init()
     }
     
@@ -32,8 +33,12 @@ final class NewsFilterTableController: NSObject, UITableViewDelegate, UITableVie
         cell.isUserInteractionEnabled = true
         cell.selectionStyle = .none
         cell.contentView.isHidden = true
+        cell.checkButton.addTarget(self, action: #selector(buttonTap), for: .touchUpInside)
+        
         return cell
     }
     
-    
+    @objc func buttonTap(_ handler: UIButton) {
+        handler.isSelected.toggle()
+    }
 }
