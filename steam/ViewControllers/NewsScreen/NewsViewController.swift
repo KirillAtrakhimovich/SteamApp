@@ -13,15 +13,14 @@ final class NewsViewController: NiblessViewController {
     private let filterTableController: NewsFilterTableController
     var blurEffect = UIBlurEffect(style: UIBlurEffect.Style.dark)
     lazy var blurEffectView = UIVisualEffectView(effect: blurEffect)
-    private let tableViewCell: NewsFilterTableCell
+ 
     
     private let isolationQueue = DispatchQueue(label: "newsRequestQueue",attributes: .concurrent)
    
-    init(networkManager: NetworkManager, persistenceManager: PersistenceManager, filterTableController: NewsFilterTableController, tableViewCell: NewsFilterTableCell) {
+    init(networkManager: NetworkManager, persistenceManager: PersistenceManager, filterTableController: NewsFilterTableController) {
         self.networkManager = networkManager
         self.persistenceManager = persistenceManager
         self.filterTableController = filterTableController
-        self.tableViewCell = tableViewCell
         super.init()
     }
     
@@ -37,9 +36,16 @@ final class NewsViewController: NiblessViewController {
         namesIds = persistenceManager.getFavoriteGames().map {($0.name, $0.id)}
         startIndicator()
         getNews()
-        changeIcon(isFavorite: true)
-        
     }
+    
+//    func changeIcon(isChecked: Bool) {
+//        switch isChecked {
+//        case true:
+//            checkButton.setBackgroundImage(UIImage(systemName: "checkmark"), for: .normal)
+//        case false:
+//            checkButton.setBackgroundImage(UIImage(systemName: ""), for: .normal)
+//        }
+//    }
     
     private func navItemSettings() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "Filter", style: .done, target: self, action: #selector(self.filter(sender:)))
@@ -59,7 +65,7 @@ final class NewsViewController: NiblessViewController {
         newsFilterView.backgroundColor = UIColor(named: "bgColor")
         newsFilterView.layer.borderWidth = 1
         newsFilterView.layer.borderColor = UIColor.white.cgColor
-        newsFilterView.tableView.separatorColor = .clear
+//        newsFilterView.tableView.separatorColor = .clear
         
         blurEffectView.frame = view.bounds
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -119,28 +125,18 @@ final class NewsViewController: NiblessViewController {
         var newsItems = [NewsItem]()
         for kal in newsInfo.newsitems {
             let name = namesIds.filter { $0.1 == newsInfo.appid }.first.map { $0.0 } ?? "1"
-            let model = NewsItem(id: kal.appid, name: name, title: kal.title, author: kal.author, date: kal.date, contents: kal.contents, checked: true)
+            let model = NewsItem(id: kal.appid, name: name, title: kal.title, author: kal.author, date: kal.date, contents: kal.contents, isChecked: true)
             newsItems.append(model)
         }
         return newsItems
     }
     
-    func changeIcon(isFavorite: Bool) {
-        switch isFavorite {
-        case true:
-            tableViewCell.checkButton.setBackgroundImage(UIImage(systemName: "checkmark"), for: .normal)
-        case false:
-            tableViewCell.checkButton.setBackgroundImage(UIImage(systemName: ""), for: .normal)
-        }
-    }
-    
     private func setupTableSettings() {
         newsView.tableView.dataSource = self
         newsView.tableView.delegate = self
-        newsView.tableView.separatorColor = UIColor.white
+        newsView.tableView.separatorColor = .white
         newsFilterView.tableView.dataSource = filterTableController
         newsFilterView.tableView.delegate = filterTableController
-        newsFilterView.tableView.separatorColor = UIColor.white
         newsFilterView.tableView.reloadData()
     }
 }
@@ -169,5 +165,15 @@ extension NewsViewController:UITableViewDelegate {
         navigationItem.backButtonTitle = ""
         navigationController?.navigationBar.tintColor = .white
         navigationController?.pushViewController(viewController, animated: true)
+    }
+}
+
+extension UIViewController {
+    func addBlur() {
+        
+    }
+    
+    func removeBlur() {
+        
     }
 }
