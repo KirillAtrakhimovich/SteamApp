@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+struct GameFilterModel {
+    var id: Int
+    var name: String
+    var isChecked: Bool
+}
