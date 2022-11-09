@@ -48,7 +48,7 @@ class NewsFilterTableCell: NiblessViewCell {
         }
     }
 
-    func fillCell(game: LocalFavoriteGame) {
+    func fillCell(game: GameFilterModel) {
         gameTitle.text = game.name
         
     }
