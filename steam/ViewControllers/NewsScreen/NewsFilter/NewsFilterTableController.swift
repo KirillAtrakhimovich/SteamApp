@@ -2,21 +2,18 @@ import Foundation
 import UIKit
 
 final class NewsFilterTableController: NSObject, UITableViewDelegate, UITableViewDataSource {
-  
     private var model: FavGameListModel?
     private let persist: PersistenceManager
-    private let filterCell: NewsFilterTableCell
-    init(persist: PersistenceManager, filterCell: NewsFilterTableCell) {
+    init(persist: PersistenceManager) {
         self.persist = persist
-        self.filterCell = filterCell
         super.init()
     }
     
-    private func createModel(games: [Favorite]) {
-        let gameItems = games.map { LocalFavoriteGame(id: $0.id, isFavorite: true, name: $0.name, discount: $0.discount, isDiscount: $0.isDiscount, price: $0.price, isFree: $0.isFree, finalPrice: $0.finalPrice)}
-        
-        model = FavGameListModel(games: gameItems, filteredGames: gameItems)
-    }
+//    private func createModel(games: [Favorite]) {
+//        let gameItems = games.map { LocalFavoriteGame(id: $0.id, isFavorite: true, name: $0.name, discount: $0.discount, isDiscount: $0.isDiscount, price: $0.price, isFree: $0.isFree, finalPrice: $0.finalPrice)}
+//
+//        model = FavGameListModel(games: gameItems, filteredGames: gameItems)
+//    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         createModel(games: persist.getFavoriteGames())
@@ -34,11 +31,11 @@ final class NewsFilterTableController: NSObject, UITableViewDelegate, UITableVie
         cell.selectionStyle = .none
         cell.contentView.isHidden = true
         cell.checkButton.addTarget(self, action: #selector(buttonTap), for: .touchUpInside)
-        
         return cell
     }
     
     @objc func buttonTap(_ handler: UIButton) {
         handler.isSelected.toggle()
     }
+    
 }
