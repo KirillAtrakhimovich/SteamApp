@@ -17,10 +17,15 @@ final class TabBarController: UITabBarController {
     }
     
     func setupVCs() {
+        let newsViewController = NewsViewController(networkManager: NetworkManager(),
+                                                    persistenceManager: PersistenceManager(),
+                                                    filterTableController: NewsFilterTableController())
         viewControllers = [
             createNavController(for: GamesListViewController(networkManager: NetworkManager(), persistenceManager: PersistenceManager()), image: Constants.listIcon),
             createNavController(for: FavoriteListViewController(), title: NSLocalizedString(Constants.favsTitle, comment: Constants.empty), image: Constants.favsIcon),
-            createNavController(for: NewsViewController(networkManager: NetworkManager(), persistenceManager: PersistenceManager(), filterTableController: NewsFilterTableController(persist: PersistenceManager(), filterCell: NewsFilterTableCell())), title: NSLocalizedString(Constants.newsTitle, comment: Constants.empty), image: Constants.newsIcon)
+            createNavController(for: newsViewController,
+                                title: NSLocalizedString(Constants.newsTitle, comment: Constants.empty),
+                                image: Constants.newsIcon)
         ]
     }
 

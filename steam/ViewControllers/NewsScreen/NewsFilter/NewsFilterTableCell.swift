@@ -13,9 +13,10 @@ class NewsFilterTableCell: NiblessViewCell {
     
     let checkButton: UIButton = {
         let checkButton = UIButton()
+        checkButton.isSelected = true
         checkButton.backgroundColor = UIColor(named: "navBarColor")
-//        checkButton.setBackgroundImage(UIImage(systemName: "box"), for: .normal)
         checkButton.setBackgroundImage(UIImage(systemName: "checkmark"), for: .selected)
+        checkButton.setBackgroundImage(UIImage(systemName: "box"), for: .normal)
         return checkButton
     }()
     
@@ -47,7 +48,7 @@ class NewsFilterTableCell: NiblessViewCell {
         }
     }
 
-    func fillCell(game: LocalFavoriteGame) {
+    func fillCell(game: GameFilterModel) {
         gameTitle.text = game.name
         
     }

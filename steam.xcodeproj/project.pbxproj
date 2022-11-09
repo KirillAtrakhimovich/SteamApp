@@ -49,6 +49,7 @@
 		28B7490428BE2DD700EB022F /* LocalFavoriteGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B7490328BE2DD700EB022F /* LocalFavoriteGame.swift */; };
 		28B7490628BF5C6000EB022F /* GamesListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B7490528BF5C6000EB022F /* GamesListModel.swift */; };
 		28B7490828BF5CB000EB022F /* GameListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B7490728BF5CB000EB022F /* GameListItem.swift */; };
+		28FC6B02291C06CD00F060AE /* GameFilterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FC6B01291C06CD00F060AE /* GameFilterModel.swift */; };
 		8A7F5B3662405201F3277609 /* Pods_steam.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 757A87A4AD56A15DC9578AAE /* Pods_steam.framework */; };
 /* End PBXBuildFile section */
 
@@ -97,6 +98,7 @@
 		28B7490328BE2DD700EB022F /* LocalFavoriteGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalFavoriteGame.swift; sourceTree = "<group>"; };
 		28B7490528BF5C6000EB022F /* GamesListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesListModel.swift; sourceTree = "<group>"; };
 		28B7490728BF5CB000EB022F /* GameListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameListItem.swift; sourceTree = "<group>"; };
+		28FC6B01291C06CD00F060AE /* GameFilterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameFilterModel.swift; sourceTree = "<group>"; };
 		33924B1A88FD00C8B5763FCC /* Pods-steam.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-steam.debug.xcconfig"; path = "Target Support Files/Pods-steam/Pods-steam.debug.xcconfig"; sourceTree = "<group>"; };
 		757A87A4AD56A15DC9578AAE /* Pods_steam.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_steam.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA0C0F3675FB4AAD4CEE894F /* Pods-steam.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-steam.release.xcconfig"; path = "Target Support Files/Pods-steam/Pods-steam.release.xcconfig"; sourceTree = "<group>"; };
@@ -225,12 +227,10 @@
 		2893CFA828AD0C35002BEE9B /* NewsScreen */ = {
 			isa = PBXGroup;
 			children = (
+				28FC6B00291C064D00F060AE /* NewsFilter */,
 				2893CFA928AD0C67002BEE9B /* NewsViewController.swift */,
 				2893CFAB28AD0C75002BEE9B /* NewsView.swift */,
 				2858992828D0CBF5007C580C /* NewsViewCell.swift */,
-				281450D32913F3FA0033A37E /* NewsFilterView.swift */,
-				281450D52913F9410033A37E /* NewsFilterTableCell.swift */,
-				281450D9291563F80033A37E /* NewsFilterTableController.swift */,
 			);
 			path = NewsScreen;
 			sourceTree = "<group>";
@@ -309,6 +309,17 @@
 				2893CFC128AE47F2002BEE9B /* UIViewController+showAlert.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		28FC6B00291C064D00F060AE /* NewsFilter */ = {
+			isa = PBXGroup;
+			children = (
+				281450D32913F3FA0033A37E /* NewsFilterView.swift */,
+				281450D52913F9410033A37E /* NewsFilterTableCell.swift */,
+				281450D9291563F80033A37E /* NewsFilterTableController.swift */,
+				28FC6B01291C06CD00F060AE /* GameFilterModel.swift */,
+			);
+			path = NewsFilter;
 			sourceTree = "<group>";
 		};
 		769232A2505AEEF86DFD611D /* Frameworks */ = {
@@ -439,6 +450,7 @@
 				2858992928D0CBF5007C580C /* NewsViewCell.swift in Sources */,
 				285EC8EC2847DAFE00BAF943 /* GameDetailView.swift in Sources */,
 				282F625227CFDD96001637B3 /* GamesListView.swift in Sources */,
+				28FC6B02291C06CD00F060AE /* GameFilterModel.swift in Sources */,
 				282F625C27DA72CC001637B3 /* NetworkGameListModel.swift in Sources */,
 				28B7490628BF5C6000EB022F /* GamesListModel.swift in Sources */,
 				2893CFB928AE3F95002BEE9B /* PersistenceManager.swift in Sources */,
