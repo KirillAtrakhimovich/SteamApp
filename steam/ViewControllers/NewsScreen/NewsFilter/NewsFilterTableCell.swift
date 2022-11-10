@@ -11,8 +11,8 @@ class NewsFilterTableCell: NiblessViewCell {
         return label
     }()
     
-    let checkButton: UIButton = {
-        let checkButton = UIButton()
+    let checkButton: SuperMegaDriveButton = {
+        let checkButton = SuperMegaDriveButton()
         checkButton.isSelected = true
         checkButton.backgroundColor = UIColor(named: "navBarColor")
         checkButton.setBackgroundImage(UIImage(systemName: "checkmark"), for: .selected)

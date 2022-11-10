@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 
 final class NewsFilterTableController: NSObject, UITableViewDelegate, UITableViewDataSource {
-    private var games = [GameFilterModel]()
+    var games = [GameFilterModel]()
     
     func configure(_ games: [GameFilterModel]) {
         self.games = games
@@ -22,11 +22,14 @@ final class NewsFilterTableController: NSObject, UITableViewDelegate, UITableVie
         cell.selectionStyle = .none
         cell.contentView.isHidden = true
         cell.checkButton.addTarget(self, action: #selector(buttonTap), for: .touchUpInside)
+        cell.checkButton.index = indexPath.row
         return cell
     }
     
-    @objc func buttonTap(_ handler: UIButton) {
+    @objc func buttonTap(_ handler: SuperMegaDriveButton) {
         handler.isSelected.toggle()
+        let itemModel = games[handler.index]
+        itemModel.isChecked.toggle()
+        
     }
-    
 }
