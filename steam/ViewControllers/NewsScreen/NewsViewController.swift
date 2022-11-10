@@ -15,13 +15,11 @@ final class NewsViewController: NiblessViewController {
     private let group = DispatchGroup()
     private let filterTableController: NewsFilterTableController
     private let isolationQueue = DispatchQueue(label: "newsRequestQueue",attributes: .concurrent)
-//    private var isChecked: Bool
-   
+    
     init(networkManager: NetworkManager, persistenceManager: PersistenceManager, filterTableController: NewsFilterTableController) {
         self.networkManager = networkManager
         self.persistenceManager = persistenceManager
         self.filterTableController = filterTableController
-//        self.isChecked = isChecked
         super.init()
     }
     
@@ -43,6 +41,7 @@ final class NewsViewController: NiblessViewController {
         setupTableSettings()
         startIndicator()
         getNews()
+        
     }
     
     private func navItemSettings() {
@@ -52,8 +51,11 @@ final class NewsViewController: NiblessViewController {
     }
     
     @objc func saveButtonTapped() {
+        let filteredGames = filterTableController.games.filter { $0.isChecked }
+        
         removeBlur()
         newsFilterView.removeFromSuperview()
+        newsView.tableView.reloadData()
     }
     
     @objc func filterButtonTapped(sender: UIBarButtonItem) {
@@ -66,7 +68,6 @@ final class NewsViewController: NiblessViewController {
 
         addBlur()
         newsView.addSubview(newsFilterView)
-        
     }
     
     private func getNews() {
