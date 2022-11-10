@@ -26,6 +26,7 @@ class FavoriteListViewController: NiblessViewController {
         createModel(games: refreshedGames)
         favoriteListView.tableView.reloadData()
     }
+    
     func navigationControllerSetup() {
         navigationController?.navigationBar.topItem?.title = Constants.title
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: Constants.titleSort, style: .done, target: self, action: #selector(self.sort(sender:)))
