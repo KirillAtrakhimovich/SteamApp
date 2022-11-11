@@ -51,8 +51,14 @@ final class NewsViewController: NiblessViewController {
     }
     
     @objc func saveButtonTapped() {
+        var newModel = [NewsItem]()
         let filteredGames = filterTableController.games.filter { $0.isChecked }
+        let filtedIds = filteredGames.map { $0.id }
         
+        for id in filtedIds {
+            let newModel = model?.news.filter { $0.id == id }
+        }
+        model?.news = newModel
         removeBlur()
         newsFilterView.removeFromSuperview()
         newsView.tableView.reloadData()
