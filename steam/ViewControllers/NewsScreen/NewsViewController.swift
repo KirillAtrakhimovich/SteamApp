@@ -15,6 +15,7 @@ final class NewsViewController: NiblessViewController {
     private let group = DispatchGroup()
     private let filterTableController: NewsFilterTableController
     private let isolationQueue = DispatchQueue(label: "newsRequestQueue",attributes: .concurrent)
+    private var newsModel: NewsArrayModel?
     
     init(networkManager: NetworkManager, persistenceManager: PersistenceManager, filterTableController: NewsFilterTableController) {
         self.networkManager = networkManager
@@ -51,14 +52,10 @@ final class NewsViewController: NiblessViewController {
     }
     
     @objc func saveButtonTapped() {
-        var newModel = [NewsItem]()
         let filteredGames = filterTableController.games.filter { $0.isChecked }
         let filtedIds = filteredGames.map { $0.id }
         
-        for id in filtedIds {
-            let newModel = model?.news.filter { $0.id == id }
-        }
-        model?.news = newModel
+        newsModel?.filterNews(with: filtedIds)
         removeBlur()
         newsFilterView.removeFromSuperview()
         newsView.tableView.reloadData()
