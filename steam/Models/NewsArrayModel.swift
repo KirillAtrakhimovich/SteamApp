@@ -11,19 +11,20 @@ import UIKit
 class NewsArrayModel {
     let news: [NewsItem]
     var filteredNews: [NewsItem]
-    
+
     init(news: [NewsItem], filteredNews: [NewsItem]) {
         self.news = news
         self.filteredNews = filteredNews
     }
     
-    func filterGames(with text: String) {
-        if text == "" {
-            filteredGames = games
+    func filterNews(with ids: [Int]) {
+        var newsIds = news.map {$0.id}
+        if newsIds == ids {
+            filteredNews = news
         }
         else {
-            filteredGames = games.filter { $0.name.contains(text) }
-            filteredGames = games.filter { $0.name.localizedCaseInsensitiveContains(text) }
+            filteredNews = news.filter { $0.id == ids }
+          
         }
     }
 }
