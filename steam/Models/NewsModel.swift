@@ -1,10 +1,3 @@
-//
-//  NewsModel.swift
-//  steam
-//
-//  Created by Kirill Atrakhimovich on 20.09.22.
-//
-
 import Foundation
 
 class NewsModel {

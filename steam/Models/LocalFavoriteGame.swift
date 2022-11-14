@@ -1,10 +1,3 @@
-//
-//  LocalFavoriteGame.swift
-//  steam
-//
-//  Created by Kirill Atrakhimovich on 30.08.22.
-//
-
 import Foundation
 
 struct LocalFavoriteGame {
