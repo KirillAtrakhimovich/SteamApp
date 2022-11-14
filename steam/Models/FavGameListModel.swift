@@ -1,11 +1,3 @@
-//
-//  FavGameListModel.swift
-//  steam
-//
-//  Created by Kirill Atrakhimovich on 7.09.22.
-//
-
-
 import Foundation
 import UIKit
 

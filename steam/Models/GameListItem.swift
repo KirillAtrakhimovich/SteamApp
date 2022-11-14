@@ -1,10 +1,3 @@
-//
-//  GameListItem.swift
-//  steam
-//
-//  Created by Kirill Atrakhimovich on 31.08.22.
-//
-
 import Foundation
 import UIKit
 
