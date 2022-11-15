@@ -80,7 +80,7 @@ class NewsViewCell: NiblessViewCell {
     
     func fillCell(news: NewsItem) {
         let date = NSDate(timeIntervalSince1970: TimeInterval(news.date))
-        gameNameLabel.text = news.name
+        gameNameLabel.text = news.gameName
         authorLabel.text = "by \(news.author)"
         titleLabel.text = news.title
         dateLabel.text = getFormatedDate(dateString: "\(date)")

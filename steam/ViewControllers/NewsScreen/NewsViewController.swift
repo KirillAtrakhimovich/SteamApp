@@ -15,7 +15,7 @@ final class NewsViewController: NiblessViewController {
     private let group = DispatchGroup()
     private let filterTableController: NewsFilterTableController
     private let isolationQueue = DispatchQueue(label: "newsRequestQueue",attributes: .concurrent)
-    private var newsModel: NewsArrayModel?
+    private var allNews = [NewsItem]()
     
     init(networkManager: NetworkManager, persistenceManager: PersistenceManager, filterTableController: NewsFilterTableController) {
         self.networkManager = networkManager
@@ -54,8 +54,7 @@ final class NewsViewController: NiblessViewController {
     @objc func saveButtonTapped() {
         let filteredGames = filterTableController.games.filter { $0.isChecked }
         let filtedIds = filteredGames.map { $0.id }
-        
-        newsModel?.filterNews(with: filtedIds)
+        model?.filterNews(with: filtedIds)
         removeBlur()
         newsFilterView.removeFromSuperview()
         newsView.tableView.reloadData()
@@ -81,9 +80,10 @@ final class NewsViewController: NiblessViewController {
             makeNetworkRequest(id)
             group.leave()
         }
-        group.notify(queue: .main) {
-            guard let model = self.model else { return }
-            model.news.sort { $0.date > $1.date }
+        group.notify(queue: .main) { [weak self] in
+            guard let self = self else { return }
+            self.model = NewsModel(news: self.allNews, filteredNews: self.allNews)
+            self.model?.filteredNews.sort { $0.date > $1.date }
             self.stopIndicator()
             self.newsView.tableView.reloadData()
         }
@@ -104,10 +104,7 @@ final class NewsViewController: NiblessViewController {
     private func successNewsRequest(_ news: Items) {
         self.isolationQueue.async(flags: .barrier) {
             let newsItems = self.convertNews(news)
-            if self.model == nil {
-                self.model = NewsModel()
-            }
-            self.model!.news += newsItems
+            self.allNews += newsItems
         }
     }
     
@@ -123,7 +120,7 @@ final class NewsViewController: NiblessViewController {
         var newsItems = [NewsItem]()
         for kal in newsInfo.newsitems {
             let name = namesIds.filter { $0.1 == newsInfo.appid }.first.map { $0.0 } ?? "1"
-            let model = NewsItem(id: kal.appid, name: name, title: kal.title, author: kal.author, date: kal.date, contents: kal.contents)
+            let model = NewsItem(gameId: kal.appid, gameName: name, title: kal.title, author: kal.author, date: kal.date, contents: kal.contents)
             newsItems.append(model)
         }
         return newsItems
@@ -141,7 +138,7 @@ final class NewsViewController: NiblessViewController {
 
 extension NewsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return model?.news.count ?? 0
+            return model?.filteredNews.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -149,7 +146,7 @@ extension NewsViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         guard let model = model else { return UITableViewCell() }
-        let item = model.news[indexPath.row]
+        let item = model.filteredNews[indexPath.row]
         cell.fillCell(news: item)
         return cell
     }
@@ -158,7 +155,7 @@ extension NewsViewController: UITableViewDataSource {
 extension NewsViewController:UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let model = model else { return }
-        let item = model.news[indexPath.row]
+        let item = model.filteredNews[indexPath.row]
         let viewController = NewsDetailViewController(model: item)
         navigationItem.backButtonTitle = ""
         navigationController?.navigationBar.tintColor = .white
