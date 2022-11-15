@@ -53,7 +53,7 @@ final class NewsDetailViewController: NiblessViewController{
     }
     
     private func uploadGameNameLabel() {
-        self.newsDetailView.gameNameLabel.text = model.name
+        self.newsDetailView.gameNameLabel.text = model.gameName
     }
     
     private func uploadAuthorLabel() {
