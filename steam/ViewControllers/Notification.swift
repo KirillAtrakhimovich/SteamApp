@@ -1,10 +1,3 @@
-//
-//  Notification.swift
-//  steam
-//
-//  Created by Kirill Atrakhimovich on 13.09.22.
-//
-
 import Foundation
 import UserNotifications
 

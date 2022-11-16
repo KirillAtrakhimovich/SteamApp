@@ -42,7 +42,6 @@ final class NewsViewController: NiblessViewController {
         setupTableSettings()
         startIndicator()
         getNews()
-        
     }
     
     private func navItemSettings() {
