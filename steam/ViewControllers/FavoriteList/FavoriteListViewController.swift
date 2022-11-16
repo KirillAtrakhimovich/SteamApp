@@ -38,10 +38,6 @@ class FavoriteListViewController: NiblessViewController {
         favoriteListView.tableView.delegate = self
         
     }
-    
-    @objc func edit(sender: UIBarButtonItem) {
-        
-    }
 
     @objc func sort(sender: UIBarButtonItem) {
         let alert = UIAlertController(title: "SORTING", message: "You can sort your favourites games alphabetically or in the price ascending order.", preferredStyle: UIAlertController.Style.actionSheet)
