@@ -1,10 +1,3 @@
-//
-//  TabBar.swift
-//  steam
-//
-//  Created by Kirill Atrakhimovich on 2.03.22.
-//
-
 import UIKit
 
 final class TabBarController: UITabBarController {
