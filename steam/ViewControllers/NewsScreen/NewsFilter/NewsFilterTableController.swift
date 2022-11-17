@@ -26,10 +26,9 @@ final class NewsFilterTableController: NSObject, UITableViewDelegate, UITableVie
         return cell
     }
     
-    @objc func buttonTap(_ handler: SuperMegaDriveButton) {
+    @objc func buttonTap(_ handler: FavouriteButton) {
         handler.isSelected.toggle()
         let itemModel = games[handler.index]
         itemModel.isChecked.toggle()
-        
     }
 }

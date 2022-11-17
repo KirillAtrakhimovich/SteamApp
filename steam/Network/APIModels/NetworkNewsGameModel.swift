@@ -1,10 +1,3 @@
-//
-//  NetworkNewsGameModel.swift
-//  steam
-//
-//  Created by Kirill Atrakhimovich on 15.09.22.
-//
-
 import Foundation
 
 struct News: Codable{

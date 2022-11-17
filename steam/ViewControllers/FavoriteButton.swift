@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-class SuperMegaDriveButton: UIButton {
+class FavouriteButton: UIButton {
     var index: Int
     
     init(index: Int = 0) {
@@ -28,7 +28,7 @@ class SuperMegaDriveButton: UIButton {
     }
 }
 
-extension SuperMegaDriveButton{
+extension FavouriteButton{
     struct Constants {
         static let fatalError = "init(coder:) has not been implemented"
         static let starFill = "star.fill"

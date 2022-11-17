@@ -1,10 +1,3 @@
-//
-//  NetworkManager.swift
-//  steam
-//
-//  Created by Kirill Atrakhimovich on 2.03.22.
-//
-
 import Foundation
 import UIKit
 
@@ -86,7 +79,6 @@ final class NetworkManager {
         }.resume()
     }
 
-    
     func getGamesList(completion: @escaping (Result<[Game], Error>) -> Void) {
         
         guard let url = URL(string: stringURL) else {
@@ -114,6 +106,7 @@ final class NetworkManager {
             }
         }.resume()
     }
+    
     func getNewsInfo(gameId: Int, completion: @escaping (Result<Items, Error>) -> Void) {
         let gameNewsURL = "https://api.steampowered.com/ISteamNews/GetNewsForApp/v2/?appid=\(gameId)&count=10"
         guard let url = URL(string: gameNewsURL) else {
@@ -128,12 +121,10 @@ final class NetworkManager {
                 completion(.failure(error))
                 return
             }
-
             guard let data = data else {
                 completion(.failure(NetworkError.emptyData))
                 return
             }
-
             if let mainObject = try? JSONDecoder().decode(News.self, from: data) {
                 completion(.success(mainObject.appnews))
             } else {

@@ -43,5 +43,4 @@ class NewsFilterView: NiblessView {
             constraints.bottom.equalToSuperview().inset(10)
         }
     }
-    
 }

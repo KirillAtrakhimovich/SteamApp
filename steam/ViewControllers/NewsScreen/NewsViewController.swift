@@ -61,7 +61,6 @@ final class NewsViewController: NiblessViewController {
     
     @objc func filterButtonTapped(sender: UIBarButtonItem) {
         newsFilterView.setup()
-        
         newsFilterView.frame = CGRect(x: view.frame.width / 6, y: view.frame.height / 4, width: view.frame.width / 1.5, height: view.frame.height / 2)
         newsFilterView.backgroundColor = UIColor(named: "bgColor")
         newsFilterView.layer.borderWidth = 1
@@ -117,9 +116,9 @@ final class NewsViewController: NiblessViewController {
     
     private func convertNews(_ newsInfo: Items) -> [NewsItem] {
         var newsItems = [NewsItem]()
-        for kal in newsInfo.newsitems {
+        for item in newsInfo.newsitems {
             let name = namesIds.filter { $0.1 == newsInfo.appid }.first.map { $0.0 } ?? "1"
-            let model = NewsItem(gameId: kal.appid, gameName: name, title: kal.title, author: kal.author, date: kal.date, contents: kal.contents)
+            let model = NewsItem(gameId: item.appid, gameName: name, title: item.title, author: item.author, date: item.date, contents: item.contents)
             newsItems.append(model)
         }
         return newsItems

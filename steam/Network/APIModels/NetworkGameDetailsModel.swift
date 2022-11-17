@@ -1,7 +1,7 @@
 import Foundation
 
 struct GameModel: Decodable {
-    let gameID: BrawlStars?
+    let gameID: MainInfo?
 
     private struct DynamicCodingKeys: CodingKey {
 
@@ -19,10 +19,10 @@ struct GameModel: Decodable {
     init(from decoder: Decoder) throws {
 
         let container = try decoder.container(keyedBy: DynamicCodingKeys.self)
-        var game: BrawlStars?
+        var game: MainInfo?
 
         for key in container.allKeys {
-            game = try container.decode(BrawlStars.self, forKey: DynamicCodingKeys(stringValue: key.stringValue)!)
+            game = try container.decode(MainInfo.self, forKey: DynamicCodingKeys(stringValue: key.stringValue)!)
         }
 
         if let gameDecode = game {
@@ -33,7 +33,7 @@ struct GameModel: Decodable {
     }
 }
 
-struct BrawlStars: Decodable {
+struct MainInfo: Decodable {
     let success: Bool
     let data: GameInfo
 }
