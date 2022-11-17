@@ -42,7 +42,7 @@ final class GameDetailViewController: NiblessViewController {
         }
     }
 
-    @objc func buttonTap(sender: SuperMegaDriveButton) {
+    @objc func buttonTap(sender: FavouriteButton) {
         guard let gameModel = gameModel,
               let priceInfo = gameModel.priceInfo else {
             return

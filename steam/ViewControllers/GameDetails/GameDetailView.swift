@@ -33,8 +33,8 @@ final class GameDetailView: NiblessView {
         return titleView
     }()
     
-    private(set) var favouriteButton: SuperMegaDriveButton = {
-        let favouriteButton = SuperMegaDriveButton()
+    private(set) var favouriteButton: FavouriteButton = {
+        let favouriteButton = FavouriteButton()
         favouriteButton.setBackgroundImage(UIImage(systemName: Constants.star), for: .normal)
         favouriteButton.tintColor = .orange
         favouriteButton.isUserInteractionEnabled = true
