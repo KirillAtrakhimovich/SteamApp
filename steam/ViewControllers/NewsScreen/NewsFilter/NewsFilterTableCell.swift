@@ -11,8 +11,8 @@ class NewsFilterTableCell: NiblessViewCell {
         return label
     }()
     
-    let checkButton: SuperMegaDriveButton = {
-        let checkButton = SuperMegaDriveButton()
+    let checkButton: FavouriteButton = {
+        let checkButton = FavouriteButton()
         checkButton.isSelected = true
         checkButton.backgroundColor = UIColor(named: "navBarColor")
         checkButton.setBackgroundImage(UIImage(systemName: "checkmark"), for: .selected)
@@ -50,6 +50,5 @@ class NewsFilterTableCell: NiblessViewCell {
 
     func fillCell(game: GameFilterModel) {
         gameTitle.text = game.name
-        
     }
 }
