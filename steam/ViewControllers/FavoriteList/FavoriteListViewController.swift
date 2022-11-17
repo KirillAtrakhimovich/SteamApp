@@ -114,11 +114,11 @@ extension FavoriteListViewController : UITableViewDataSource {
     }
 }
 
-extension FavoriteListViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-    }
-}
+//extension FavoriteListViewController: UITableViewDelegate {
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        
+//    }
+//}
 
 extension FavoriteListViewController {
     struct Constants {
