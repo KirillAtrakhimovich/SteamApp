@@ -128,7 +128,7 @@ extension GamesListViewController: UITableViewDataSource {
         return cell
     }
     
-    @objc func buttonTap(sender: SuperMegaDriveButton) {
+    @objc func buttonTap(sender: FavouriteButton) {
         guard let itemModel = model?.filteredGames[sender.index] else { return }
         
         itemModel.isFavorite.toggle()

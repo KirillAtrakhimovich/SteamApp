@@ -11,8 +11,8 @@ class GamesTableViewCell: NiblessViewCell {
         return label
     }()
     
-    let favoriteButton: SuperMegaDriveButton = {
-        let button = SuperMegaDriveButton()
+    let favoriteButton: FavouriteButton = {
+        let button = FavouriteButton()
         button.setBackgroundImage(UIImage(systemName: Constants.star), for: .normal)
         button.tintColor = .orange
         return button 
