@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 
 class NewsViewCell: NiblessViewCell {
-    static let identifier = "NewsViewCell"
+    static let identifier = Constants.identifier
     
     var gameNameLabel: UILabel = {
         var gameNameLabel = UILabel()
@@ -15,7 +15,7 @@ class NewsViewCell: NiblessViewCell {
         let authorTitle = UILabel()
         authorTitle.textColor = .white
         authorTitle.numberOfLines = 0
-        authorTitle.font = UIFont.italicSystemFont(ofSize: 15)
+        authorTitle.font = Constants.authorLabelFont
         return authorTitle
     }()
     
@@ -23,7 +23,7 @@ class NewsViewCell: NiblessViewCell {
         let titleLabel = UILabel()
         titleLabel.textColor = .white
         titleLabel.numberOfLines = 0
-        titleLabel.font = UIFont(name:"HelveticaNeue-Bold", size: 19.0)
+        titleLabel.font = Constants.titleLabelFont
         return titleLabel
     }()
     
@@ -105,4 +105,12 @@ class NewsViewCell: NiblessViewCell {
         super.setSelected(selected, animated: animated)
     }
     
+}
+
+extension NewsViewCell {
+    struct Constants {
+        static let identifier = "NewsViewCell"
+        static let authorLabelFont = UIFont.italicSystemFont(ofSize: 15)
+        static let titleLabelFont = UIFont(name:"HelveticaNeue-Bold", size: 19.0)
+    }
 }

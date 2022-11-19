@@ -14,7 +14,7 @@ final class NewsViewController: NiblessViewController {
     private var namesIds = [(String,Int)]()
     private let group = DispatchGroup()
     private let filterTableController: NewsFilterTableController
-    private let isolationQueue = DispatchQueue(label: "newsRequestQueue",attributes: .concurrent)
+    private let isolationQueue = DispatchQueue(label: Constants.label, attributes: .concurrent)
     private var allNews = [NewsItem]()
     
     init(networkManager: NetworkManager, persistenceManager: PersistenceManager, filterTableController: NewsFilterTableController) {
@@ -45,9 +45,13 @@ final class NewsViewController: NiblessViewController {
     }
     
     private func navItemSettings() {
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "Filter", style: .done, target: self, action: #selector(self.filterButtonTapped(sender:)))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: Constants.title,
+                                                                      style: .done, target: self,
+                                                                      action: #selector(self.filterButtonTapped(sender:)))
         self.navigationItem.rightBarButtonItem?.tintColor = .white
-        newsFilterView.saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
+        newsFilterView.saveButton.addTarget(self,
+                                            action: #selector(saveButtonTapped),
+                                            for: .touchUpInside)
     }
     
     @objc func saveButtonTapped() {
@@ -60,18 +64,21 @@ final class NewsViewController: NiblessViewController {
     }
     
     @objc func filterButtonTapped(sender: UIBarButtonItem) {
-        newsFilterView.setup()
-        newsFilterView.frame = CGRect(x: view.frame.width / 6, y: view.frame.height / 4, width: view.frame.width / 1.5, height: view.frame.height / 2)
-        newsFilterView.backgroundColor = UIColor(named: "bgColor")
-        newsFilterView.layer.borderWidth = 1
-        newsFilterView.layer.borderColor = UIColor.white.cgColor
-
+        newsFilterViewSetting()
         addBlur()
         newsView.addSubview(newsFilterView)
     }
     
-    private func getNews() {
+    private func newsFilterViewSetting() {
+        newsFilterView.setup()
+        newsFilterView.frame = CGRect(x: view.frame.width / 6, y: view.frame.height / 4, width: view.frame.width / 1.5, height: view.frame.height / 2)
+        newsFilterView.backgroundColor = Constants.backgroundColor
+        newsFilterView.layer.borderWidth = 1
+        newsFilterView.layer.borderColor = UIColor.white.cgColor
 
+    }
+    
+    private func getNews() {
         let gamesID = namesIds.map { $0.1 }
         for id in gamesID {
             group.enter()
@@ -174,3 +181,13 @@ extension UIViewController {
         blurEffectView.alpha = 0
     }
 }
+
+extension NewsViewController{
+    struct Constants {
+        static let label = "newsRequestQueue"
+        static let backgroundColor = UIColor(named: "bgColor")
+        static let title = "Filter"
+        static let unchecked = "box"
+    }
+}
+

@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-class FavoriteListViewController: NiblessViewController {
+class FavoriteListViewController: NiblessViewController, UITableViewDelegate {
     
     private var favoriteListView = FavoriteListView()
     private let persistanceManager = PersistenceManager()

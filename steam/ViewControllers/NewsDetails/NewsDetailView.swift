@@ -26,7 +26,7 @@ class NewsDetailView: NiblessView {
         let authorTitle = UILabel()
         authorTitle.textColor = .white
         authorTitle.numberOfLines = 0
-        authorTitle.font = UIFont.italicSystemFont(ofSize: 15)
+        authorTitle.font = Constants.authorLabelFont
         return authorTitle
     }()
     
@@ -34,7 +34,7 @@ class NewsDetailView: NiblessView {
         let titleLabel = UILabel()
         titleLabel.textColor = .white
         titleLabel.numberOfLines = 0
-        titleLabel.font = UIFont(name:"HelveticaNeue-Bold", size: 19.0)
+        titleLabel.font = Constants.titleLabelFont
         return titleLabel
     }()
     
@@ -60,7 +60,7 @@ class NewsDetailView: NiblessView {
         let discriptionLabel = UILabel()
         discriptionLabel.numberOfLines = 0
         discriptionLabel.textColor = UIColor.white
-        discriptionLabel.font = UIFont(name:"ArialHebrew-Light", size: 25.0)
+        discriptionLabel.font = Constants.discriptionLabelFont
         return discriptionLabel
     }()
     
@@ -84,7 +84,7 @@ class NewsDetailView: NiblessView {
         setupDiscriptionView()
         setupDiscriptionLabel()
 //        setupWebView()
-        backgroundColor =  UIColor(named: "bgColor")
+        backgroundColor = Constants.backgroundColor
     }
     
     private func setupScrollView() {
@@ -175,4 +175,13 @@ class NewsDetailView: NiblessView {
 //        }
 //    }
     
+}
+
+extension NewsDetailView {
+    struct Constants {
+        static let backgroundColor = UIColor(named: "bgColor")
+        static let titleLabelFont = UIFont(name:"HelveticaNeue-Bold", size: 19.0)
+        static let authorLabelFont = UIFont.italicSystemFont(ofSize: 15)
+        static let discriptionLabelFont = UIFont(name:"ArialHebrew-Light", size: 25.0)
+    }
 }

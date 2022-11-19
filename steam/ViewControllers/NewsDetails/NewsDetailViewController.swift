@@ -22,7 +22,6 @@ final class NewsDetailViewController: NiblessViewController{
     }
     
     func updateView() {
-        
         DispatchQueue.main.async { [weak self] in
             self?.uploadGameNameLabel()
             self?.uploadAuthorLabel()

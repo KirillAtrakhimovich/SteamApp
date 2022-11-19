@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 
 class NewsFilterTableCell: NiblessViewCell {
-    static let identifier = "NewsFilterTableCell"
+    static let identifier = Constants.identifier
     
     let gameTitle: UILabel = {
         let label = UILabel()
@@ -14,14 +14,14 @@ class NewsFilterTableCell: NiblessViewCell {
     let checkButton: FavouriteButton = {
         let checkButton = FavouriteButton()
         checkButton.isSelected = true
-        checkButton.backgroundColor = UIColor(named: "navBarColor")
-        checkButton.setBackgroundImage(UIImage(systemName: "checkmark"), for: .selected)
-        checkButton.setBackgroundImage(UIImage(systemName: "box"), for: .normal)
+        checkButton.backgroundColor = Constants.backgroundColor
+        checkButton.setBackgroundImage(UIImage(systemName: Constants.checked), for: .selected)
+        checkButton.setBackgroundImage(UIImage(systemName: Constants.unchecked), for: .normal)
         return checkButton
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: .default, reuseIdentifier: "NewsFilterTableCell")
+        super.init(style: .default, reuseIdentifier: Constants.identifier)
         setupView()
         self.backgroundColor = .clear
         gameTitle.setContentCompressionResistancePriority(UILayoutPriority.defaultLow, for: .horizontal)
@@ -50,5 +50,14 @@ class NewsFilterTableCell: NiblessViewCell {
 
     func fillCell(game: GameFilterModel) {
         gameTitle.text = game.name
+    }
+}
+
+extension NewsFilterTableCell {
+    struct Constants {
+        static let identifier = "NewsFilterTableCell"
+        static let backgroundColor = UIColor(named: "navBarColor")
+        static let checked = "checkmark"
+        static let unchecked = "box"
     }
 }
