@@ -7,16 +7,16 @@ class NewsFilterView: NiblessView {
     private(set) var tableView: UITableView = {
         let tableView = UITableView()
         tableView.backgroundColor = UIColor.clear
-        tableView.register(NewsFilterTableCell.self, forCellReuseIdentifier: "NewsFilterTableCell")
+        tableView.register(NewsFilterTableCell.self, forCellReuseIdentifier: Constants.identifier)
         tableView.separatorColor = .clear
         return tableView
     }()
     
     private(set) var saveButton: UIButton = {
         let saveButton = UIButton()
-        saveButton.backgroundColor = UIColor(named: "navBarColor")
+        saveButton.backgroundColor = Constants.backgroundColor
         saveButton.layer.cornerRadius = 5
-        saveButton.setTitle("Save", for: .normal)
+        saveButton.setTitle(Constants.title, for: .normal)
         return saveButton
     }()
     
@@ -42,5 +42,13 @@ class NewsFilterView: NiblessView {
             constraints.trailing.equalToSuperview().inset(25)
             constraints.bottom.equalToSuperview().inset(10)
         }
+    }
+}
+
+extension NewsFilterView {
+    struct Constants {
+        static let backgroundColor = UIColor(named: "navBarColor")
+        static let identifier = "NewsFilterTableCell"
+        static let title = "Save"
     }
 }

@@ -13,7 +13,7 @@ final class NewsFilterTableController: NSObject, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "NewsFilterTableCell", for: indexPath) as? NewsFilterTableCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.identifier, for: indexPath) as? NewsFilterTableCell else {
             return UITableViewCell()
         }
         let item = games[indexPath.row]
@@ -30,5 +30,11 @@ final class NewsFilterTableController: NSObject, UITableViewDelegate, UITableVie
         handler.isSelected.toggle()
         let itemModel = games[handler.index]
         itemModel.isChecked.toggle()
+    }
+}
+
+extension NewsFilterTableController {
+    struct Constants {
+        static let identifier = "NewsFilterTableCell"
     }
 }
