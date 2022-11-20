@@ -16,7 +16,7 @@ final class TabBarController: UITabBarController {
         viewControllers = [
             createNavController(for: GamesListViewController(networkManager: NetworkManager(),
                                                              persistenceManager: PersistenceManager()),
-                                image: Constants.listIcon),
+                                                             image: Constants.listIcon),
             createNavController(for: FavoriteListViewController(),
                                 title: NSLocalizedString(Constants.favsTitle, comment: Constants.empty),
                                 image: Constants.favsIcon),
