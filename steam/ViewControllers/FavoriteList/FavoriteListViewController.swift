@@ -40,21 +40,37 @@ class FavoriteListViewController: NiblessViewController, UITableViewDelegate {
     }
 
     @objc func sort(sender: UIBarButtonItem) {
-        let alert = UIAlertController(title: "SORTING", message: "You can sort your favourites games alphabetically or in the price ascending order.", preferredStyle: UIAlertController.Style.actionSheet)
-        alert.addAction(UIAlertAction(title: "Sort by Title", style: UIAlertAction.Style.default, handler: { _ in
-            guard let filtGames = self.model?.filteredGames else { return }
-            let sortGamesByNames = filtGames.sorted { $0.name < $1.name }
-            self.model?.filteredGames = sortGamesByNames
-            self.favoriteListView.tableView.reloadData()
+        let alert = UIAlertController(title: Constants.sorting,
+                                      message: Constants.message,
+                                      preferredStyle: UIAlertController.Style.actionSheet)
+        alert.addAction(UIAlertAction(title: Constants.sortByTitle ,
+                                      style: UIAlertAction.Style.default,
+                                      handler: { _ in
+            self.sortByName()
         }))
-        alert.addAction(UIAlertAction(title: "Sort by Price", style: UIAlertAction.Style.default, handler: { _ in
-            guard let filtGames = self.model?.filteredGames else { return }
-            let sortGamesByPrice = filtGames.sorted { $0.finalPrice < $1.finalPrice }
-            self.model?.filteredGames = sortGamesByPrice
-            self.favoriteListView.tableView.reloadData()
+        alert.addAction(UIAlertAction(title: Constants.sortByPrice,
+                                      style: UIAlertAction.Style.default,
+                                      handler: { _ in
+            self.sortByPrice()
         }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: Constants.cancel,
+                                      style: UIAlertAction.Style.cancel,
+                                      handler: nil))
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    private func sortByName() {
+        guard let filtGames = self.model?.filteredGames else { return }
+        let sortGamesByNames = filtGames.sorted { $0.name < $1.name }
+        self.model?.filteredGames = sortGamesByNames
+        self.favoriteListView.tableView.reloadData()
+    }
+    
+    private func sortByPrice() {
+        guard let filtGames = self.model?.filteredGames else { return }
+        let sortGamesByPrice = filtGames.sorted { $0.finalPrice < $1.finalPrice }
+        self.model?.filteredGames = sortGamesByPrice
+        self.favoriteListView.tableView.reloadData()
     }
     
     private func setupSearchBarSettings() {
@@ -114,17 +130,16 @@ extension FavoriteListViewController : UITableViewDataSource {
     }
 }
 
-//extension FavoriteListViewController: UITableViewDelegate {
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        
-//    }
-//}
-
 extension FavoriteListViewController {
     struct Constants {
-       static let title = "Favorites"
-       static let titleEdit = "Edit"
-       static let titleSort = "Sort"
+        static let title = "Favorites"
+        static let titleEdit = "Edit"
+        static let titleSort = "Sort"
+        static let message = "You can sort your favourites games alphabetically or in the price ascending order."
+        static let sorting = "SORTING"
+        static let sortByTitle = "Sort by Title"
+        static let sortByPrice = "Sort by Price"
+        static let cancel = "Cancel"
     }
 }
 

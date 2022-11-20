@@ -228,7 +228,6 @@ extension GameDetailViewController {
        static let windowsImage = UIImage(named: "windows_image")
        static let appleImage = UIImage(named: "apple_image")
        static let linuxImage = UIImage(named: "linux_image")
-    
     }
 }
 
