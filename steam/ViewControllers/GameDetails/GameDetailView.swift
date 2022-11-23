@@ -4,26 +4,14 @@ import UIKit
 
 final class GameDetailView: NiblessView {
 
-    private(set) var scrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        return scrollView
-    }()
+    private(set) var scrollView = UIScrollView()
     
-    private(set) var contentView: UIView = {
-        let contentView = UIView()
-        return contentView
-    }()
+    private(set) var contentView = UIView()
     
-    private(set) var headerImage: UIImageView = {
-        let headerImage = UIImageView()
-        return headerImage
-    }()
+    private(set) var headerImage = UIImageView()
     
-    private(set) var titleButtonView: UIView = {
-        let titleButtonView = UIView()
-        return titleButtonView
-    }()
-    
+    private(set) var titleButtonView = UIView()
+      
     private(set) var titleView: UILabel = {
         let titleView = UILabel()
         titleView.numberOfLines = 0
@@ -50,17 +38,12 @@ final class GameDetailView: NiblessView {
         return genresLabel
     }()
     
-    private(set) var stubView: UIView = {
-        let stubView = UIView()
-        return stubView
-    }()
+    private(set) var stubView = UIView()
     
     private(set) var genresView = UIView()
     
-    private(set) var releasePricePlatformView: UIView = {
-        let releasePricePlatformView = UIView()
-        return releasePricePlatformView
-    }()
+    private(set) var releasePricePlatformView = UIView()
+
     
     private(set) var releaseLabel: UILabel = {
         let releaseLabel = UILabel()
@@ -77,20 +60,11 @@ final class GameDetailView: NiblessView {
         return priceLabel
     }()
     
-    private(set) var platformsView: UIView = {
-        let platformsView = UIView()
-        return platformsView
-    }()
+    private(set) var platformsView = UIView()
     
-    private(set) var releaseView: UIView = {
-        let releaseView = UIView()
-        return releaseView
-    }()
+    private(set) var releaseView = UIView()
     
-    private(set) var priceView: UIView = {
-        let priceView = UIView()
-        return priceView
-    }()
+    private(set) var priceView = UIView()
     
     private(set) var firstView: UIImageView = {
         let firstView = UIImageView()
@@ -116,10 +90,7 @@ final class GameDetailView: NiblessView {
         return lineView
     }()
     
-    private(set) var discriptionView: UIView = {
-        let discriptionView = UIView()
-        return discriptionView
-    }()
+    private(set) var discriptionView = UIView()
     
     private(set) var discriptionLabel: UILabel = {
         let discriptionLabel = UILabel()
@@ -129,10 +100,7 @@ final class GameDetailView: NiblessView {
         return discriptionLabel
     }()
     
-    private(set) var screenshotsView: UIView = {
-        let screenshotsView = UIView()
-        return screenshotsView
-    }()
+    private(set) var screenshotsView = UIView()
     
     private(set) var screenshotViews = [UIImageView]()
     
