@@ -27,10 +27,7 @@ class GamesListView: NiblessView {
         return searchBar
     }()
     
-    let refreshControl: UIRefreshControl = {
-        let refreshControl = UIRefreshControl()
-        return refreshControl
-    }()
+    let refreshControl = UIRefreshControl()
     
     var activityIndicator: UIActivityIndicatorView = {
         let activityIndicator = UIActivityIndicatorView()
