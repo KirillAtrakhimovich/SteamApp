@@ -10,10 +10,7 @@ final class ScreenshotDetailView: NiblessView {
         return screenshotView
     }()
     
-    private(set) var scrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        return scrollView
-    }()
+    private(set) var scrollView = UIScrollView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
