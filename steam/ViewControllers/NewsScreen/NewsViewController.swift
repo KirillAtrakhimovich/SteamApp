@@ -28,6 +28,10 @@ final class NewsViewController: NiblessViewController {
         view = newsView
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        newsView.tableView.reloadData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
