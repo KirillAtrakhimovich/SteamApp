@@ -29,23 +29,29 @@ final class NewsViewController: NiblessViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        getFavGames()
+        getNews()
         newsView.tableView.reloadData()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        getFavGames()
+        newsView.setup()
+        navItemSettings()
+        setupTableSettings()
+        startIndicator()
+        getNews()
+    }
+    
+    private func getFavGames() {
         let favoriteGames = persistenceManager.getFavoriteGames()
         let gamesFilterList = favoriteGames.map { GameFilterModel(id: $0.id,
                                                                   name: $0.name,
                                                                   isChecked: true) }
         namesIds = favoriteGames.map { ($0.name, $0.id) }
         filterTableController.configure(gamesFilterList)
-        newsView.setup()
-        navItemSettings()
-        setupTableSettings()
-        startIndicator()
-        getNews()
     }
     
     private func navItemSettings() {
@@ -83,6 +89,7 @@ final class NewsViewController: NiblessViewController {
     }
     
     private func getNews() {
+        allNews = []
         let gamesID = namesIds.map { $0.1 }
         for id in gamesID {
             group.enter()
@@ -93,8 +100,8 @@ final class NewsViewController: NiblessViewController {
             guard let self = self else { return }
             self.model = NewsModel(news: self.allNews, filteredNews: self.allNews)
             self.model?.filteredNews.sort { $0.date > $1.date }
-            self.stopIndicator()
             self.newsView.tableView.reloadData()
+            self.stopIndicator()
         }
     }
     
