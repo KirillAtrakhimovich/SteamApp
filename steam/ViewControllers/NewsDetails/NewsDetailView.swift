@@ -5,15 +5,9 @@ import WebKit
 
 class NewsDetailView: NiblessView {
     
-    private(set) var scrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        return scrollView
-    }()
+    private(set) var scrollView = UIScrollView()
     
-    private(set) var contentView: UIView = {
-        let contentView = UIView()
-        return contentView
-    }()
+    private(set) var contentView = UIView()
     
     var gameNameLabel: UILabel = {
         var gameNameLabel = UILabel()
@@ -51,10 +45,7 @@ class NewsDetailView: NiblessView {
         return lineView
     }()
     
-    private(set) var discriptionView: UIView = {
-        let discriptionView = UIView()
-        return discriptionView
-    }()
+    private(set) var discriptionView = UIView()
     
     private(set) var discriptionLabel: UILabel = {
         let discriptionLabel = UILabel()
