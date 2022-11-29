@@ -15,7 +15,6 @@ class Notifications: NSObject, UNUserNotificationCenterDelegate {
     }
 
     func scheduleNotification() {
-        
         let content = UNMutableNotificationContent() // Содержимое уведомления
         let userActions = "User Actions"
         

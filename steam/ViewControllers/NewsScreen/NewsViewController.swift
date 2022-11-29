@@ -180,7 +180,6 @@ extension NewsViewController:UITableViewDelegate {
 }
 
 extension UIViewController {
-    
     func addBlur() {
         blurEffectView.frame = view.bounds
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
