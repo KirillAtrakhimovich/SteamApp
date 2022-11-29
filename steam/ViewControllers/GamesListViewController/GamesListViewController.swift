@@ -130,10 +130,8 @@ extension GamesListViewController: UITableViewDataSource {
     
     @objc func buttonTap(sender: FavouriteButton) {
         guard let itemModel = model?.filteredGames[sender.index] else { return }
-        
         itemModel.isFavorite.toggle()
         sender.changeIcon(isFavorite: itemModel.isFavorite)
-        
         networkManager.getGameDetails(gameid: itemModel.id) { [weak self] result in
             switch result {
             case .success(let gameModel):
@@ -194,7 +192,6 @@ extension GamesListViewController: UISearchBarDelegate {
         model?.filterGames(with: searchText)
         customView.tableView.reloadData()
     }
-    
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.endEditing(true)
     }
