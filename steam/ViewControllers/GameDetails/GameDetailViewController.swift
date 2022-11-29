@@ -87,7 +87,6 @@ final class GameDetailViewController: NiblessViewController {
     func updateView() {
         uploadHeaderImage()
         uploadScreenshots()
-        
         DispatchQueue.main.async { [weak self] in
             self?.uploadName()
             self?.uploadGenres()
@@ -140,7 +139,6 @@ final class GameDetailViewController: NiblessViewController {
     
     private func uploadName() {
         self.gameDetailView.titleView.text = self.gameModel?.name
-        
         if let title = self.gameModel?.name {
             self.navigationItem.title = title
         }
