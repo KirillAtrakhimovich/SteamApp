@@ -19,10 +19,12 @@ final class TabBarController: UITabBarController {
                                                              persistenceManager: PersistenceManager()),
                                                              image: Constants.listIcon),
             createNavController(for: FavoriteListViewController(),
-                                title: NSLocalizedString(Constants.favsTitle, comment: Constants.empty),
+                                title: NSLocalizedString(Constants.favsTitle,
+                                                         comment: Constants.empty),
                                 image: Constants.favsIcon),
             createNavController(for: newsViewController,
-                                title: NSLocalizedString(Constants.newsTitle, comment: Constants.empty),
+                                title: NSLocalizedString(Constants.newsTitle,
+                                                         comment: Constants.empty),
                                 image: Constants.newsIcon)
         ]
     }
@@ -41,7 +43,6 @@ final class TabBarController: UITabBarController {
     }
     
     private func navBarSettings() {
-        
         if #available(iOS 15, *) {
             let navigationBarAppearance = UINavigationBarAppearance()
                             navigationBarAppearance.configureWithOpaqueBackground()
