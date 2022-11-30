@@ -26,7 +26,9 @@ class Notifications: NSObject, UNUserNotificationCenterDelegate {
         
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3600 , repeats: true)
         let identifier = "Local Notification"
-        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+        let request = UNNotificationRequest(identifier: identifier,
+                                            content: content,
+                                            trigger: trigger)
         
         notificationCenter.add(request) { (error) in
             if let error = error {

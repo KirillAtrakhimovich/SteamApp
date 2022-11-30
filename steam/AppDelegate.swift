@@ -1,10 +1,3 @@
-//
-//  AppDelegate.swift
-//  steam
-//
-//  Created by Kirill Atrakhimovich on 2.03.22.
-//
-
 import UIKit
 import CoreData
 import UserNotifications
