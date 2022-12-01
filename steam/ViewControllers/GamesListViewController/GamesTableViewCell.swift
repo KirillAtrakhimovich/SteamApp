@@ -21,10 +21,10 @@ class GamesTableViewCell: NiblessViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupView()
-        self.backgroundColor = .clear
     }
 
     func setup() {
+        self.backgroundColor = .clear
         isUserInteractionEnabled = true
         selectionStyle = .none
         contentView.isHidden = true
