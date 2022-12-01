@@ -5,7 +5,6 @@ final class ScreenshotDetailViewController: NiblessViewController{
     private var screenshotDetailView = ScreenshotDetailView()
     private let image: UIImage
     
-                                                                    
     override func loadView() {
         view = screenshotDetailView
     }
