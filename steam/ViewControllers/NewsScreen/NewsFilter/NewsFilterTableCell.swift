@@ -22,8 +22,12 @@ class NewsFilterTableCell: NiblessViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .default, reuseIdentifier: Constants.identifier)
-        setupView()
         self.backgroundColor = .clear
+        setupView()
+        contentPriority()
+    }
+    
+    private func contentPriority() {
         gameTitle.setContentCompressionResistancePriority(UILayoutPriority.defaultLow, for: .horizontal)
         checkButton.setContentCompressionResistancePriority(UILayoutPriority.defaultHigh, for: .horizontal)
         gameTitle.setContentHuggingPriority(UILayoutPriority.defaultLow, for:.horizontal)

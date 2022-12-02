@@ -61,10 +61,6 @@ class NewsDetailView: NiblessView {
 //    }()
     
     func setup() {
-        gameNameLabel.setContentCompressionResistancePriority(UILayoutPriority.defaultLow, for: .horizontal)
-        dateLabel.setContentCompressionResistancePriority(UILayoutPriority.defaultHigh, for: .horizontal)
-        gameNameLabel.setContentHuggingPriority(UILayoutPriority.defaultLow, for:.horizontal)
-        dateLabel.setContentHuggingPriority(UILayoutPriority.defaultHigh, for:.horizontal)
         setupScrollView()
         setupContentView()
         setupGameNameLabel()
@@ -76,6 +72,14 @@ class NewsDetailView: NiblessView {
         setupDiscriptionLabel()
 //        setupWebView()
         backgroundColor = Constants.backgroundColor
+        contentPriority()
+    }
+    
+    private func contentPriority() {
+        gameNameLabel.setContentCompressionResistancePriority(UILayoutPriority.defaultLow, for: .horizontal)
+        dateLabel.setContentCompressionResistancePriority(UILayoutPriority.defaultHigh, for: .horizontal)
+        gameNameLabel.setContentHuggingPriority(UILayoutPriority.defaultLow, for:.horizontal)
+        dateLabel.setContentHuggingPriority(UILayoutPriority.defaultHigh, for:.horizontal)
     }
     
     private func setupScrollView() {

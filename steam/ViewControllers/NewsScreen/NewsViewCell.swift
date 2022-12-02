@@ -37,16 +37,25 @@ class NewsViewCell: NiblessViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupView()
+        contentPriority()
+        viewSettings()
+        
+    }
+
+    private func contentPriority() {
         gameNameLabel.setContentCompressionResistancePriority(UILayoutPriority.defaultLow, for: .horizontal)
         dateLabel.setContentCompressionResistancePriority(UILayoutPriority.defaultHigh, for: .horizontal)
         gameNameLabel.setContentHuggingPriority(UILayoutPriority.defaultLow, for:.horizontal)
         dateLabel.setContentHuggingPriority(UILayoutPriority.defaultHigh, for:.horizontal)
+    }
+    
+    private func viewSettings() {
         self.backgroundColor = .clear
         isUserInteractionEnabled = true
         selectionStyle = .none
         contentView.isHidden = true
     }
-
+    
     private func setupView() {
         self.addSubview(gameNameLabel)
         gameNameLabel.snp.makeConstraints { constraints in

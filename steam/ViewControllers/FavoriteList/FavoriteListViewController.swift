@@ -29,7 +29,10 @@ class FavoriteListViewController: NiblessViewController, UITableViewDelegate {
     
     func navigationControllerSetup() {
         navigationController?.navigationBar.topItem?.title = Constants.title
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: Constants.titleSort, style: .done, target: self, action: #selector(self.sort(sender:)))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: Constants.titleSort,
+                                                                      style: .done,
+                                                                      target: self,
+                                                                      action: #selector(self.sort(sender:)))
         self.navigationItem.rightBarButtonItem?.tintColor = .white
     }
     
