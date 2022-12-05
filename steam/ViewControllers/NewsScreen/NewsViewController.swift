@@ -36,7 +36,7 @@ final class NewsViewController: NiblessViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        navControllerSetings()
         getFavGames()
         newsView.setup()
         navItemSettings()
@@ -85,7 +85,6 @@ final class NewsViewController: NiblessViewController {
         newsFilterView.backgroundColor = Constants.backgroundColor
         newsFilterView.layer.borderWidth = 1
         newsFilterView.layer.borderColor = UIColor.white.cgColor
-
     }
     
     private func getNews() {
@@ -150,6 +149,12 @@ final class NewsViewController: NiblessViewController {
         newsFilterView.tableView.delegate = filterTableController
         newsFilterView.tableView.reloadData()
     }
+    
+    private func navControllerSetings() {
+        navigationItem.backButtonTitle = ""
+        navigationController?.navigationBar.tintColor = .white
+       
+    }
 }
 
 extension NewsViewController: UITableViewDataSource {
@@ -173,8 +178,6 @@ extension NewsViewController:UITableViewDelegate {
         guard let model = model else { return }
         let item = model.filteredNews[indexPath.row]
         let viewController = NewsDetailViewController(model: item)
-        navigationItem.backButtonTitle = ""
-        navigationController?.navigationBar.tintColor = .white
         navigationController?.pushViewController(viewController, animated: true)
     }
 }
