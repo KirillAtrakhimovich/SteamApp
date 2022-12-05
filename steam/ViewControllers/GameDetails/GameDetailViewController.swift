@@ -165,18 +165,26 @@ final class GameDetailViewController: NiblessViewController {
         let priceLabel = self.gameDetailView.priceLabel
         if let isFree = self.gameModel?.isFree {
             if isFree {
-                priceLabel.text = Constants.freeToPlay
-                priceLabel.font = Constants.font
-                priceLabel.textColor = UIColor.systemGreen
+               freeGameSettings(priceLabel: priceLabel)
             } else if discountPercent != 0 {
-                priceLabel.font = priceLabel.font.withSize(15.0)
-                priceLabel.textColor = UIColor.systemGreen
-                if let price = self.gameModel?.priceInfo?.priceDescription {
-                    self.gameDetailView.priceLabel.text = ("\(price) (-\(discountPercent!)%) ")
-                }
+                discountGameSettings(priceLabel: priceLabel, discountPercent: discountPercent ?? 0)
             } else {
                 self.gameDetailView.priceLabel.text = self.gameModel?.priceInfo?.priceDescription
             }
+        }
+    }
+    
+    private func freeGameSettings(priceLabel: UILabel) {
+        priceLabel.text = Constants.freeToPlay
+        priceLabel.font = Constants.font
+        priceLabel.textColor = UIColor.systemGreen
+    }
+    
+    private func discountGameSettings(priceLabel: UILabel, discountPercent: Int) {
+        priceLabel.font = priceLabel.font.withSize(15.0)
+        priceLabel.textColor = UIColor.systemGreen
+        if let price = self.gameModel?.priceInfo?.priceDescription {
+            self.gameDetailView.priceLabel.text = ("\(price) (-\(discountPercent)%) ")
         }
     }
     

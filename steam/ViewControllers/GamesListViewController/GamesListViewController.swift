@@ -41,6 +41,7 @@ final class GamesListViewController: NiblessViewController {
         customView.setupViews()
         startIndicator()
         uploadData()
+        navConntrollerSettings()
         customView.refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
     }
     
@@ -166,6 +167,11 @@ extension GamesListViewController: UITableViewDataSource {
             self.customView.tableView.reloadData()
         }
     }
+    
+    private func navConntrollerSettings() {
+        navigationItem.backButtonTitle = Constants.empty
+        navigationController?.navigationBar.tintColor = .white
+    }
 }
 
 extension GamesListViewController: UITableViewDelegate {
@@ -181,8 +187,6 @@ extension GamesListViewController: UITableViewDelegate {
                                                       networkManager: networkManager,
                                                       persistenceManager: persistenceManager,
                                                       changeParentButton: changeButton )
-        navigationItem.backButtonTitle = Constants.empty
-                navigationController?.navigationBar.tintColor = .white
         navigationController?.pushViewController(viewController, animated: true)
     }
 }
