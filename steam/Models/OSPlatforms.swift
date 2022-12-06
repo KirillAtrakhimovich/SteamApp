@@ -1,8 +1,7 @@
-//
-//  OSPlatforms.swift
-//  steam
-//
-//  Created by Kirill Atrakhimovich on 6.12.22.
-//
-
 import Foundation
+
+enum OSPlatforms {
+    case mac
+    case windows
+    case linux
+}
