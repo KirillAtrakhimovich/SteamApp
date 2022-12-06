@@ -6,3 +6,64 @@
 //
 
 import Foundation
+
+struct Mapper {
+    
+    static func createGameDetailsModel(from gameInfo: GameInfo) -> GameDetailsModel {
+        GameDetailsModel(headerImage: gameInfo.headerImage,
+                         name: gameInfo.name,
+                         genres: mapGenres(gameInfo.genres),
+                         price: mapPrice(gameInfo.priceInfo, gameInfo.releaseDate.comingSoon, gameInfo.isFree),
+                         platforms: mapPlatforms(gameInfo.platforms),
+                         shortDescription: gameInfo.shortDescription ?? "",
+                         screenshots: mapScreenshots(gameInfo.screenshots),
+                         releaseDate: mapReleaseDate(gameInfo.releaseDate),
+                         isFree: gameInfo.isFree)
+    }
+}
+
+private extension Mapper {
+    
+    static func mapGenres(_ genres: [Genre]?) -> [String] {
+        guard let genres = genres else { return [] }
+        return genres.map { $0.description }
+    }
+    
+    static func mapPlatforms(_ platforms: Platforms) -> [OSPlatforms] {
+        var result = [OSPlatforms]()
+        if platforms.mac {
+            result.append(.mac)
+        }
+        if platforms.linux {
+            result.append(.linux)
+        }
+        if platforms.windows {
+            result.append(.windows)
+        }
+        return result
+    }
+    
+    static func mapScreenshots(_ screenshots: [Screenshot]?) -> [String] {
+        guard let screenshots = screenshots else { return [] }
+        return screenshots.map { $0.screenshotUrl }
+    }
+    
+    static func mapReleaseDate(_ releaseDate: ReleaseDate) -> String {
+        releaseDate.comingSoon ? "Comming soon" : releaseDate.date
+    }
+    
+    static func mapPrice(_ price: Price?, _ comingSoon: Bool, _ isFree: Bool) -> PriceStatus {
+        if isFree {
+            return .defaultPrice("Free to play")
+        }
+        if comingSoon {
+            return .defaultPrice("Coming soon")
+        }
+        guard let price = price else { return .defaultPrice("No price") }
+        if price.discountPercent != 0 {
+            return .discountPrice("\(price.priceDescription) (-\(price.discountPercent)%) ")
+        } else {
+            return .defaultPrice("\(price.priceDescription)")
+        }
+    }
+}
