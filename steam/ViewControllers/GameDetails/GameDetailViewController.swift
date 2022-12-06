@@ -7,7 +7,7 @@ final class GameDetailViewController: NiblessViewController {
     private var isFavorite: Bool
     private let networkManager: NetworkManager
     private var persistenceManager = PersistenceManager()
-    private var gameModel: GameInfo? {
+    private var gameModel: GameDetailsModel? {
         didSet {
             updateView()
         }
@@ -160,63 +160,58 @@ final class GameDetailViewController: NiblessViewController {
         }
     }
     
-    private func uploadPrice(){
-        let discountPercent = self.gameModel?.priceInfo?.discountPercent
-        let priceLabel = self.gameDetailView.priceLabel
-        if let isFree = self.gameModel?.isFree {
-            if isFree {
-               freeGameSettings(priceLabel: priceLabel)
-            } else if discountPercent != 0 {
-                discountGameSettings(priceLabel: priceLabel, discountPercent: discountPercent ?? 0)
-            } else {
-                self.gameDetailView.priceLabel.text = self.gameModel?.priceInfo?.priceDescription
-            }
-        }
-    }
-    
-    private func freeGameSettings(priceLabel: UILabel) {
-        priceLabel.text = Constants.freeToPlay
-        priceLabel.font = Constants.font
-        priceLabel.textColor = UIColor.systemGreen
-    }
-    
-    private func discountGameSettings(priceLabel: UILabel, discountPercent: Int) {
-        priceLabel.font = priceLabel.font.withSize(15.0)
-        priceLabel.textColor = UIColor.systemGreen
-        if let price = self.gameModel?.priceInfo?.priceDescription {
-            self.gameDetailView.priceLabel.text = ("\(price) (-\(discountPercent)%) ")
-        }
-    }
-    
-    private func uploadOSImages() {
-        let appleTrue = self.gameModel?.platforms.mac
-        let windowsTrue = self.gameModel?.platforms.windows
-        let linuxTrue = self.gameModel?.platforms.linux
+    func uploadPrice(){
+        guard let gameModel = gameModel else { return }
+
+        setupPriceLabel(price: gameModel.price)
         
+        
+        
+//        let discountPercent = gameModel.priceInfo?.discountPercent
+//        let priceLabel = gameDetailView.priceLabel
+//
+//        switch gameModel.priceStatus {
+//        case .isFree:
+//            freeGameSettings(priceLabel: priceLabel)
+//        case .isDiscount:
+//            discountGameSettings(priceLabel: priceLabel, discountPercent: discountPercent ?? 0)
+//        case .comingSoon:
+//            gameDetailView.priceLabel.text = "Coming soon"
+//        case .defaultPrice:
+//            gameDetailView.priceLabel.text = gameModel.priceInfo?.priceDescription
+//        }
+//
+//        if let isFree = self.gameModel?.isFree {
+//            if isFree {
+//                hah = .isFree
+//            } else if discountPercent != 0 {
+//                discountGameSettings(priceLabel: priceLabel, discountPercent: discountPercent ?? 0)
+//            } else {
+//                self.gameDetailView.priceLabel.text = self.gameModel?.priceInfo?.priceDescription
+//            }
+//        }
+    }
+    
+    func setupPriceLabel(price: PriceStatus) {
+        gameDetailView.priceLabel.text = price.value
+        gameDetailView.priceLabel.font = price.textFont
+        gameDetailView.priceLabel.textColor = price.textColor
+    }
+    
+    private func uploadOSImages(_ platforms: [OSPlatforms]) {
         var imageFillsCounter = 0
         
-        if windowsTrue == true {
-            self.gameDetailView.thirdView.image = Constants.windowsImage
-            imageFillsCounter += 1
-        }
-        
-        if appleTrue == true {
+        for element in platforms {
             if imageFillsCounter == 0 {
-                self.gameDetailView.thirdView.image = Constants.appleImage
-            } else {
+                self.gameDetailView.thirdView.image = 
+            }
+            if imageFillsCounter == 1 {
                 self.gameDetailView.secondView.image = Constants.appleImage
             }
-            imageFillsCounter += 1
-        }
-    
-        if linuxTrue == true {
-            if imageFillsCounter == 0 {
-                self.gameDetailView.thirdView.image = Constants.linuxImage
-            } else if imageFillsCounter == 1 {
-                self.gameDetailView.secondView.image = Constants.linuxImage
-            } else if imageFillsCounter == 2 {
+            if imageFillsCounter == 2 {
                 self.gameDetailView.firstView.image = Constants.linuxImage
             }
+            imageFillsCounter += 1
         }
     }
     
