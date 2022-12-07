@@ -9,8 +9,10 @@ import Foundation
 
 struct Mapper {
     
-    static func createGameDetailsModel(from gameInfo: GameInfo) -> GameDetailsModel {
-        GameDetailsModel(headerImage: gameInfo.headerImage,
+    static func createGameDetailsModel(from gameInfo: GameInfo?) -> GameDetailsModel? {
+        guard let gameInfo = gameInfo else { return nil }
+
+        return GameDetailsModel(headerImage: gameInfo.headerImage,
                          name: gameInfo.name,
                          genres: mapGenres(gameInfo.genres),
                          price: mapPrice(gameInfo.priceInfo, gameInfo.releaseDate.comingSoon, gameInfo.isFree),
@@ -54,16 +56,26 @@ private extension Mapper {
     
     static func mapPrice(_ price: Price?, _ comingSoon: Bool, _ isFree: Bool) -> PriceStatus {
         if isFree {
-            return .defaultPrice("Free to play")
+            return .defaultPrice(PriceItem(priceDiscription: "Free to play"))
         }
         if comingSoon {
-            return .defaultPrice("Coming soon")
+            return .defaultPrice(PriceItem(priceDiscription: "Coming soon"))
         }
-        guard let price = price else { return .defaultPrice("No price") }
+        guard let price = price else { return .defaultPrice(PriceItem(priceDiscription: "No price")) }
         if price.discountPercent != 0 {
-            return .discountPrice("\(price.priceDescription) (-\(price.discountPercent)%) ")
+            let priceDiscription = "\(price.priceDescription) (-\(price.discountPercent)%)"
+            let priceItem = PriceItem(priceDiscription: priceDiscription,
+                                      discount: price.discountPercent,
+                                      isDiscount: true,
+                                      finalPrice: price.finalPrice)
+            return .discountPrice(priceItem)
         } else {
-            return .defaultPrice("\(price.priceDescription)")
+            let priceDiscription = "\(price.priceDescription)"
+            let priceItem = PriceItem(priceDiscription: priceDiscription,
+                                      discount: price.discountPercent,
+                                      isDiscount: false,
+                                      finalPrice: price.finalPrice)
+            return .defaultPrice(priceItem)
         }
     }
 }
