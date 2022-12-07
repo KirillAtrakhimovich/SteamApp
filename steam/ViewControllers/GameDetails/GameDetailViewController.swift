@@ -29,13 +29,16 @@ final class GameDetailViewController: NiblessViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+
         gameDetailView.favouriteButton.changeIcon(isFavorite: isFavorite)
         gameDetailView.favouriteButton.addTarget(self, action: #selector(buttonTap), for: .touchUpInside)
         
         networkManager.getGameDetails(gameid: gameID) { [weak self] result in
+            guard let self = self else { return }
             switch result {
-            case .success(let gameModel):
-                self?.gameModel = gameModel.gameID?.data
+            case .success(let gameInfo):
+                self.gameModel = Mapper.createGameDetailsModel(from: gameInfo.gameID?.data)
             case .failure(let error):
                print(error)
             }
@@ -43,31 +46,20 @@ final class GameDetailViewController: NiblessViewController {
     }
 
     @objc func buttonTap(sender: FavouriteButton) {
-        guard let gameModel = gameModel,
-              let priceInfo = gameModel.priceInfo else {
-            return
-        }
+        guard let gameModel = gameModel else { return }
+        
         isFavorite.toggle()
         sender.changeIcon(isFavorite: isFavorite)
         changeParentButton()
         let model = LocalFavoriteGame(id:gameID ,
                                       isFavorite: isFavorite,
                                       name: gameModel.name,
-                                      discount: priceInfo.discountPercent,
-                                      isDiscount: isDiscount(),
-                                      price: priceInfo.priceDescription,
+                                      discount: gameModel.price.value.discount,
+                                      isDiscount: gameModel.price.value.isDiscount,
+                                      price: gameModel.price.value.priceDiscription,
                                       isFree: gameModel.isFree,
-                                      finalPrice: priceInfo.finalPrice)
+                                      finalPrice: gameModel.price.value.finalPrice)
         persistenceManager.saveFavorite(model: model)
-    }
-    private func isDiscount() -> Bool {
-        var isDiscount = false
-        if let discountPercent = gameModel?.priceInfo?.discountPercent {
-            if discountPercent != 0 {
-                isDiscount = true
-            }
-        }
-        return isDiscount
     }
     
     private func setupScreenshotSettings() {
@@ -88,12 +80,13 @@ final class GameDetailViewController: NiblessViewController {
         uploadHeaderImage()
         uploadScreenshots()
         DispatchQueue.main.async { [weak self] in
-            self?.uploadName()
-            self?.uploadGenres()
-            self?.uploadReleaseDate()
-            self?.uploadPrice()
-            self?.uploadOSImages()
-            self?.uploadDiscription()
+            guard let self = self else { return }
+            self.uploadName()
+            self.uploadGenres()
+            self.uploadReleaseDate()
+            self.uploadPrice()
+            self.uploadOSImages()
+            self.uploadDiscription()
         }
     }
     
@@ -117,7 +110,7 @@ final class GameDetailViewController: NiblessViewController {
     }
     
     private func uploadScreenshots() {
-        if let screenshotUrls = gameModel?.screenshots?.map({ $0.screenshotUrl }) {
+        if let screenshotUrls = gameModel?.screenshots {
             DispatchQueue.main.async {
                 self.gameDetailView.addScreenshotViews(number: screenshotUrls.count)
                 self.setupScreenshotSettings()
@@ -138,72 +131,39 @@ final class GameDetailViewController: NiblessViewController {
     }
     
     private func uploadName() {
-        self.gameDetailView.titleView.text = self.gameModel?.name
-        if let title = self.gameModel?.name {
-            self.navigationItem.title = title
-        }
+        guard let name = gameModel?.name else { return }
+        gameDetailView.titleView.text = name
+        navigationItem.title = name
     }
     
     private func uploadGenres() {
-        let description = self.gameModel?.genres?.map{ $0.description }
-        self.gameDetailView.genresLabel.text = description?.joined(separator: Constants.separatorRange)
+        let description = gameModel?.genres
+        gameDetailView.genresLabel.text = description?.joined(separator: Constants.separatorRange)
     }
     
     private func uploadReleaseDate() {
-        let releaseDate = self.gameModel?.releaseDate.date
-        if let comingSoon = self.gameModel?.releaseDate.comingSoon {
-            if comingSoon {
-                self.gameDetailView.releaseLabel.text = Constants.releaseComingSoon
-            } else {
-                self.gameDetailView.releaseLabel.text = releaseDate
-            }
-        }
+        guard let releaseDate = gameModel?.releaseDate else { return }
+        gameDetailView.releaseLabel.text = releaseDate
     }
     
     func uploadPrice(){
         guard let gameModel = gameModel else { return }
-
         setupPriceLabel(price: gameModel.price)
-        
-        
-        
-//        let discountPercent = gameModel.priceInfo?.discountPercent
-//        let priceLabel = gameDetailView.priceLabel
-//
-//        switch gameModel.priceStatus {
-//        case .isFree:
-//            freeGameSettings(priceLabel: priceLabel)
-//        case .isDiscount:
-//            discountGameSettings(priceLabel: priceLabel, discountPercent: discountPercent ?? 0)
-//        case .comingSoon:
-//            gameDetailView.priceLabel.text = "Coming soon"
-//        case .defaultPrice:
-//            gameDetailView.priceLabel.text = gameModel.priceInfo?.priceDescription
-//        }
-//
-//        if let isFree = self.gameModel?.isFree {
-//            if isFree {
-//                hah = .isFree
-//            } else if discountPercent != 0 {
-//                discountGameSettings(priceLabel: priceLabel, discountPercent: discountPercent ?? 0)
-//            } else {
-//                self.gameDetailView.priceLabel.text = self.gameModel?.priceInfo?.priceDescription
-//            }
-//        }
     }
     
     func setupPriceLabel(price: PriceStatus) {
-        gameDetailView.priceLabel.text = price.value
+        gameDetailView.priceLabel.text = price.value.priceDiscription
         gameDetailView.priceLabel.font = price.textFont
         gameDetailView.priceLabel.textColor = price.textColor
     }
     
-    private func uploadOSImages(_ platforms: [OSPlatforms]) {
+    private func uploadOSImages() {
+        guard let platforms = gameModel?.platforms else { return }
         var imageFillsCounter = 0
         
         for element in platforms {
             if imageFillsCounter == 0 {
-                self.gameDetailView.thirdView.image = 
+                self.gameDetailView.thirdView.image = Constants.windowsImage
             }
             if imageFillsCounter == 1 {
                 self.gameDetailView.secondView.image = Constants.appleImage
