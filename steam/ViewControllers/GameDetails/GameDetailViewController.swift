@@ -30,7 +30,6 @@ final class GameDetailViewController: NiblessViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
         gameDetailView.favouriteButton.changeIcon(isFavorite: isFavorite)
         gameDetailView.favouriteButton.addTarget(self, action: #selector(buttonTap), for: .touchUpInside)
         
@@ -161,7 +160,7 @@ final class GameDetailViewController: NiblessViewController {
         guard let platforms = gameModel?.platforms else { return }
         var imageFillsCounter = 0
         
-        for element in platforms {
+        for _ in platforms {
             if imageFillsCounter == 0 {
                 self.gameDetailView.thirdView.image = Constants.windowsImage
             }

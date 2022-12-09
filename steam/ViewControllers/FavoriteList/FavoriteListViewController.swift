@@ -39,7 +39,6 @@ class FavoriteListViewController: NiblessViewController, UITableViewDelegate {
     private func setupTableSettings() {
         favoriteListView.tableView.dataSource = self
         favoriteListView.tableView.delegate = self
-        
     }
 
     @objc func sort(sender: UIBarButtonItem) {
