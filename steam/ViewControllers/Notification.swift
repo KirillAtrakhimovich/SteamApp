@@ -1,7 +1,7 @@
 import Foundation
 import UserNotifications
 
-class Notifications: NSObject, UNUserNotificationCenterDelegate {
+class Notification: NSObject, UNUserNotificationCenterDelegate {
     let notificationCenter = UNUserNotificationCenter.current()
     
     func userRequest() {
@@ -9,30 +9,30 @@ class Notifications: NSObject, UNUserNotificationCenterDelegate {
         notificationCenter.requestAuthorization(options: options) {
             (didAllow, error) in
             if !didAllow {
-                print("User has declined notifications")
+                print(Constants.declinedNotifications)
             }
         }
     }
 
     func scheduleNotification() {
         let content = UNMutableNotificationContent() // Содержимое уведомления
-        let userActions = "User Actions"
+        let userActions = Constants.userActions
         
-        content.title = "Steam"
-        content.body = "Steam has new discounts for you, just check it! "
+        content.title = Constants.title
+        content.body = Constants.body
         content.sound = UNNotificationSound.default
         content.badge = 1
         content.categoryIdentifier = userActions
         
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3600 , repeats: true)
-        let identifier = "Local Notification"
+        let identifier = Constants.identifier
         let request = UNNotificationRequest(identifier: identifier,
                                             content: content,
                                             trigger: trigger)
         
         notificationCenter.add(request) { (error) in
             if let error = error {
-                print("Error \(error.localizedDescription)")
+                print("\(Constants.error) \(error.localizedDescription)")
             }
         }
     }
@@ -41,5 +41,16 @@ class Notifications: NSObject, UNUserNotificationCenterDelegate {
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
 
         completionHandler([.badge,.banner,.sound])
+    }
+}
+
+extension Notification {
+    struct Constants {
+        static let userActions = "User Actions"
+        static let title = "Steam"
+        static let body = "Steam has new discounts for you, just check it!"
+        static let identifier = "Local Notification"
+        static let declinedNotifications = "User has declined notifications"
+        static let error = "Error"
     }
 }

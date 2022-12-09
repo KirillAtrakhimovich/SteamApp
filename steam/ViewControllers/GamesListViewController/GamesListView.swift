@@ -17,7 +17,7 @@ class GamesListView: NiblessView {
         searchBar.placeholder = Constants.searchBarPlaceholder
         searchBar.searchBarStyle = .minimal
         searchBar.barTintColor = .white
-        if let textField = searchBar.value(forKey: "searchField") as? UITextField,
+        if let textField = searchBar.value(forKey: Constants.key) as? UITextField,
             let iconView = textField.leftView as? UIImageView {
             textField.tintColor = .white
             textField.textColor = .white
@@ -68,5 +68,6 @@ extension GamesListView {
         static let searchBarPlaceholder = "Search"
         static let backgroundColor = UIColor(named: "bgColor")!
         static let iconColor = UIColor(named: "searchIconColor")
+        static let key = "searchField"
     }
 }
