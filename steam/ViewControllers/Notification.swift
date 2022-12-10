@@ -15,15 +15,9 @@ class Notification: NSObject, UNUserNotificationCenterDelegate {
     }
 
     func scheduleNotification() {
+        
         let content = UNMutableNotificationContent() // Содержимое уведомления
-        let userActions = Constants.userActions
-        
-        content.title = Constants.title
-        content.body = Constants.body
-        content.sound = UNNotificationSound.default
-        content.badge = 1
-        content.categoryIdentifier = userActions
-        
+        contentSettings(content: content)
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3600 , repeats: true)
         let identifier = Constants.identifier
         let request = UNNotificationRequest(identifier: identifier,
@@ -36,6 +30,18 @@ class Notification: NSObject, UNUserNotificationCenterDelegate {
             }
         }
     }
+    
+    func contentSettings(content: UNMutableNotificationContent) {
+        
+        let userActions = Constants.userActions
+        
+        content.title = Constants.title
+        content.body = Constants.body
+        content.sound = UNNotificationSound.default
+        content.badge = 1
+        content.categoryIdentifier = userActions
+    }
+    
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
