@@ -3,7 +3,7 @@ import CoreData
 
 extension Favorite {
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Favorite> {
-        return NSFetchRequest<Favorite>(entityName: "Favorite")
+        return NSFetchRequest<Favorite>(entityName: Constants.name)
     }
 
     @NSManaged public var id: Int
@@ -13,4 +13,10 @@ extension Favorite {
     @NSManaged public var discount: Int
     @NSManaged public var isFree: Bool
     @NSManaged public var finalPrice: Int
+}
+
+extension Favorite {
+    struct Constants {
+        static let name = "Favorite"
+    }
 }

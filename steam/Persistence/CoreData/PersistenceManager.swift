@@ -19,7 +19,7 @@ final class PersistenceManager {
         let fetchRequest = Favorite.fetchRequest()
 
         fetchRequest.predicate = NSPredicate(
-            format: "id = %@", "\(id)"
+            format: Constants.format, "\(id)"
         )
 
         if let object = try? context.fetch(fetchRequest).first {
@@ -54,5 +54,11 @@ final class PersistenceManager {
         guard let favorite = getFavoriteGame(by: id) else { return }
         context.delete(favorite)
         try? context.save()
+    }
+}
+
+extension PersistenceManager {
+    struct Constants {
+        static let format = "id = %@"
     }
 }
