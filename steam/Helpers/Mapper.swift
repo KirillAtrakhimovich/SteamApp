@@ -17,7 +17,7 @@ struct Mapper {
                          genres: mapGenres(gameInfo.genres),
                          price: mapPrice(gameInfo.priceInfo, gameInfo.releaseDate.comingSoon, gameInfo.isFree),
                          platforms: mapPlatforms(gameInfo.platforms),
-                         shortDescription: gameInfo.shortDescription ?? "",
+                                shortDescription: gameInfo.shortDescription ?? Constants.empty,
                          screenshots: mapScreenshots(gameInfo.screenshots),
                          releaseDate: mapReleaseDate(gameInfo.releaseDate),
                          isFree: gameInfo.isFree)
@@ -51,17 +51,17 @@ private extension Mapper {
     }
     
     static func mapReleaseDate(_ releaseDate: ReleaseDate) -> String {
-        releaseDate.comingSoon ? "Comming soon" : releaseDate.date
+        releaseDate.comingSoon ? Constants.comingSoon : releaseDate.date
     }
     
     static func mapPrice(_ price: Price?, _ comingSoon: Bool, _ isFree: Bool) -> PriceStatus {
         if isFree {
-            return .defaultPrice(PriceItem(priceDiscription: "Free to play"))
+            return .defaultPrice(PriceItem(priceDiscription: Constants.freeToPlay))
         }
         if comingSoon {
-            return .defaultPrice(PriceItem(priceDiscription: "Coming soon"))
+            return .defaultPrice(PriceItem(priceDiscription: Constants.comingSoon))
         }
-        guard let price = price else { return .defaultPrice(PriceItem(priceDiscription: "No price")) }
+        guard let price = price else { return .defaultPrice(PriceItem(priceDiscription: Constants.noPrice)) }
         if price.discountPercent != 0 {
             let priceDiscription = "\(price.priceDescription) (-\(price.discountPercent)%)"
             let priceItem = PriceItem(priceDiscription: priceDiscription,
@@ -77,5 +77,14 @@ private extension Mapper {
                                       finalPrice: price.finalPrice)
             return .defaultPrice(priceItem)
         }
+    }
+}
+
+extension Mapper {
+    struct Constants {
+        static let empty = ""
+        static let comingSoon = "Comming soon"
+        static let freeToPlay = "Free to play"
+        static let noPrice = "No price"
     }
 }
