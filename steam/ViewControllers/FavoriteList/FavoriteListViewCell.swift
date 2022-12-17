@@ -49,7 +49,7 @@ class FavoriteListViewCell: NiblessViewCell {
     func fillCell(game: LocalFavoriteGame) {
         if game.isFree == true {
             gamePrice.textColor = .white
-            gamePrice.text = "Free"
+            gamePrice.text = Constants.free
         } else if game.isDiscount == true {
             gamePrice.text = "\(game.price)(-\(game.discount)%)"
             gamePrice.textColor = .systemGreen
@@ -70,6 +70,7 @@ class FavoriteListViewCell: NiblessViewCell {
 extension FavoriteListViewCell{
     struct Constants {
         static let identifier = "FavoriteListViewCell"
+        static let free = "Free"
     }
 }
 
