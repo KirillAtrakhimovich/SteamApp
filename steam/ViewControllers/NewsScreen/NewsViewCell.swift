@@ -97,14 +97,13 @@ class NewsViewCell: NiblessViewCell {
     
     private func getFormatedDate(dateString: String) -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
-
+        dateFormatter.dateFormat = Constants.dateFormatTo
         if let newDate = dateFormatter.date(from: dateString) {
-            dateFormatter.dateFormat = "MMM d, yyyy"
+            dateFormatter.dateFormat = Constants.dateFormatFrom
             let stringDate = dateFormatter.string(from: newDate)
             return stringDate
         }
-        return ""
+        return Constants.empty
     }
     
     override func awakeFromNib() {
@@ -113,7 +112,6 @@ class NewsViewCell: NiblessViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
 }
 
 extension NewsViewCell {
@@ -121,5 +119,8 @@ extension NewsViewCell {
         static let identifier = "NewsViewCell"
         static let authorLabelFont = UIFont.italicSystemFont(ofSize: 15)
         static let titleLabelFont = UIFont(name:"HelveticaNeue-Bold", size: 19.0)
+        static let dateFormatFrom = "MMM d, yyyy"
+        static let dateFormatTo = "yyyy-MM-dd HH:mm:ss Z"
+        static let empty = ""
     }
 }

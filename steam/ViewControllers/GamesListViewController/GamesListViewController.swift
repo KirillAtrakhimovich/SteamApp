@@ -5,12 +5,12 @@ final class GamesListViewController: NiblessViewController {
     private let networkManager: NetworkManager
     private let persistenceManager: PersistenceManager
     private var gameModel: GameInfo?
+    private var favoriteGames = [Favorite]()
     private var model: GamesListModel? {
         didSet {
             updateUI()
         }
     }
-    private var favoriteGames = [Favorite]()
    
     init(networkManager: NetworkManager, persistenceManager: PersistenceManager) {
         self.networkManager = networkManager

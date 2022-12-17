@@ -151,7 +151,7 @@ final class NewsViewController: NiblessViewController {
     }
     
     private func navControllerSetings() {
-        navigationItem.backButtonTitle = ""
+        navigationItem.backButtonTitle = Constants.empty
         navigationController?.navigationBar.tintColor = .white
        
     }
@@ -201,6 +201,7 @@ extension NewsViewController{
         static let backgroundColor = UIColor(named: "bgColor")
         static let title = "Filter"
         static let unchecked = "box"
+        static let empty = ""
     }
 }
 

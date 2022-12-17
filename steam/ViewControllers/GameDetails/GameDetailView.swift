@@ -44,7 +44,6 @@ final class GameDetailView: NiblessView {
     
     private(set) var releasePricePlatformView = UIView()
 
-    
     private(set) var releaseLabel: UILabel = {
         let releaseLabel = UILabel()
         releaseLabel.textColor = UIColor.white

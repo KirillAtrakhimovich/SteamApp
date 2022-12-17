@@ -11,7 +11,7 @@ class GamesListModel {
     }
     
     func filterGames(with text: String) {
-        if text == "" {
+        if text == Constants.empty {
             filteredGames = games
         }
         else {
@@ -21,3 +21,8 @@ class GamesListModel {
     }
 }
 
+extension GamesListModel {
+    struct Constants {
+        static let empty = ""
+    }
+}

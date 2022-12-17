@@ -4,10 +4,14 @@ final class TabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = Constants.navBarColor
-        tabBar.backgroundColor = .systemGray
+        viewSettings()
         setupVCs()
         navBarSettings()
+    }
+    
+    private func viewSettings() {
+        view.backgroundColor = Constants.navBarColor
+        tabBar.backgroundColor = .systemGray
     }
     
     func setupVCs() {
