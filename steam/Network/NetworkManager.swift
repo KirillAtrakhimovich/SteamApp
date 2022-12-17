@@ -22,8 +22,8 @@ extension NetworkError: LocalizedError {
 
 final class NetworkManager {
 
-    let stringURL = "https://api.steampowered.com/ISteamApps/GetAppList/v2/?"
-    let stringURL2 = "https://store.steampowered.com/api/appdetails?appids="
+    let stringURL = Constants.getApiList
+    let stringURL2 = Constants.getAppDetails
     func downloadImage(imageURL: String, completion: @escaping (Result<UIImage, Error>) -> Void) {
         guard let downoladImageURL = URL(string: imageURL) else {
             completion(.failure(NetworkError.invalidURL))
@@ -131,5 +131,12 @@ final class NetworkManager {
                 completion(.failure(NetworkError.parsingError))
             }
         }.resume()
+    }
+}
+
+extension NetworkManager {
+    struct Constants {
+        static let getApiList = "https://api.steampowered.com/ISteamApps/GetAppList/v2/?"
+        static let getAppDetails = "https://store.steampowered.com/api/appdetails?appids="
     }
 }
