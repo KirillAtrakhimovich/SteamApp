@@ -34,14 +34,14 @@ final class NewsDetailViewController: NiblessViewController{
     
     private func getFormatedDate(dateString: String) -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
+        dateFormatter.dateFormat = Constants.dateFormatTo
 
         if let newDate = dateFormatter.date(from: dateString) {
-            dateFormatter.dateFormat = "MMM d, yyyy"
+            dateFormatter.dateFormat = Constants.dateFormatFrom
             let stringDate = dateFormatter.string(from: newDate)
             return stringDate
         }
-        return ""
+        return Constants.empty
     }
     
     private func uploadGameNameLabel() {
@@ -83,5 +83,11 @@ final class NewsDetailViewController: NiblessViewController{
 //    }
 }
 
-
+extension NewsDetailViewController {
+    struct Constants {
+        static let dateFormatFrom = "MMM d, yyyy"
+        static let dateFormatTo = "yyyy-MM-dd HH:mm:ss Z"
+        static let empty = ""
+    }
+}
 
