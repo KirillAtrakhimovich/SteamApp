@@ -11,12 +11,18 @@ class FavGameListModel {
     }
     
     func filterGames(with text: String) {
-        if text == "" {
+        if text == Constants.empty {
             filteredGames = games
         }
         else {
             filteredGames = games.filter { $0.name.contains(text) }
             filteredGames = games.filter { $0.name.localizedCaseInsensitiveContains(text) }
         }
+    }
+}
+
+extension FavGameListModel {
+    struct Constants {
+        static let empty = ""
     }
 }
