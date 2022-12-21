@@ -144,7 +144,6 @@ final class NewsViewController: NiblessViewController {
     private func setupTableSettings() {
         newsView.tableView.dataSource = self
         newsView.tableView.delegate = self
-        newsView.tableView.separatorColor = .white
         newsFilterView.tableView.dataSource = filterTableController
         newsFilterView.tableView.delegate = filterTableController
         newsFilterView.tableView.reloadData()
@@ -168,6 +167,7 @@ extension NewsViewController: UITableViewDataSource {
         }
         guard let model = model else { return UITableViewCell() }
         let item = model.filteredNews[indexPath.row]
+        cell.contentView.isHidden = true
         cell.fillCell(news: item)
         return cell
     }

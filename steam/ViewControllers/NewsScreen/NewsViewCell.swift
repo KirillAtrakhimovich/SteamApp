@@ -35,11 +35,11 @@ class NewsViewCell: NiblessViewCell {
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        super.init(style: .default, reuseIdentifier: reuseIdentifier)
+        self.backgroundColor = .clear
         setupView()
         contentPriority()
         viewSettings()
-        
     }
 
     private func contentPriority() {
@@ -50,7 +50,6 @@ class NewsViewCell: NiblessViewCell {
     }
     
     private func viewSettings() {
-        self.backgroundColor = .clear
         isUserInteractionEnabled = true
         selectionStyle = .none
         contentView.isHidden = true

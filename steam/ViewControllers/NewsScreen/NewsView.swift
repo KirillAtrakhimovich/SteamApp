@@ -6,7 +6,7 @@ class NewsView: NiblessView {
     
     private(set) var tableView: UITableView = {
         let tableView = UITableView()
-        tableView.backgroundColor = UIColor.clear
+        tableView.backgroundColor = .clear
         tableView.register(NewsViewCell.self, forCellReuseIdentifier: NewsViewCell.identifier)
         tableView.separatorColor = .white
         return tableView

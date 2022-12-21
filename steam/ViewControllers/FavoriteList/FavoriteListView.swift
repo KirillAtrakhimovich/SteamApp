@@ -26,7 +26,7 @@ final class FavoriteListView: NiblessView {
     
     private(set) var tableView: UITableView = {
         let tableView = UITableView()
-        tableView.backgroundColor = UIColor.clear
+        tableView.backgroundColor = .clear
         tableView.register(FavoriteListViewCell.self, forCellReuseIdentifier: FavoriteListViewCell.identifier)
         tableView.separatorColor = .white
         return tableView

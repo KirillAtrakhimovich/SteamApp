@@ -21,7 +21,7 @@ class NewsFilterTableCell: NiblessViewCell {
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: .default, reuseIdentifier: Constants.identifier)
+        super.init(style: style, reuseIdentifier: Constants.identifier)
         self.backgroundColor = .clear
         setupView()
         contentPriority()
