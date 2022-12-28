@@ -1,5 +1,7 @@
 # steamList
 
+### First View :
+
 The first view presents a list of games, which we can make favorite. 
 
 If we pick the game we can see all information about the game.
@@ -8,6 +10,8 @@ If we pick the game we can see all information about the game.
 
 ---
 
+### Second View :
+
 The second view presents our favorites games with their prices and discounts, if they exist.
 
 As well, we can sort games by price or by name.
@@ -15,6 +19,8 @@ As well, we can sort games by price or by name.
 <img src="https://user-images.githubusercontent.com/92629913/209858963-756f306b-c09b-42d6-ad28-12a88630a8d6.png" title="Swift" alt="Swift" width="220" height="450"/>&nbsp; <img src="https://user-images.githubusercontent.com/92629913/209859021-e8aa32fd-aa99-406a-a836-863276c9105f.png" title="Swift" alt="Swift" width="220" height="450"/>&nbsp; <img src="https://user-images.githubusercontent.com/92629913/209859238-007f98dd-d0e9-4981-908b-0ce7e985ef4f.png" title="Swift" alt="Swift" width="220" height="450"/>&nbsp;
 
 ---
+
+### Third View :
 
 The third view presents a list of news about our favorites games chronologically.
 
@@ -28,7 +34,15 @@ The last screen displays the contents of each particular news record.
 
 ---
 
+###  Details :
 
+The app also has the custom launch screen app and steam app icon.
+
+The background fetch implemented so the app could fetch each product details and notify the user about any price drop by presenting local notifications.
+
+The search is supported.
+
+<img src="https://user-images.githubusercontent.com/92629913/209862088-1c8cbc9b-4859-43f7-b2c3-1145708034f5.png" title="Swift" alt="Swift" width="220" height="450"/>&nbsp; <img src="https://user-images.githubusercontent.com/92629913/209862120-90ea24b8-41a7-46ce-8c60-639096b507e7.png" title="Swift" alt="Swift" width="220" height="450"/>&nbsp; <img src="https://user-images.githubusercontent.com/92629913/209862161-c09199c8-991a-4f68-a52a-55f08894f37c.png" title="Swift" alt="Swift" width="220" height="450"/>&nbsp; <img src="https://user-images.githubusercontent.com/92629913/209862173-d284fcfe-4172-457a-8a94-a5cbcc426fa0.png" title="Swift" alt="Swift" width="220" height="450"/>&nbsp; 
 
 
 
