@@ -44,7 +44,6 @@ The search is supported.
 
 <img src="https://user-images.githubusercontent.com/92629913/209862088-1c8cbc9b-4859-43f7-b2c3-1145708034f5.png" title="Details" alt="Details" width="220" height="450"/>&nbsp; <img src="https://user-images.githubusercontent.com/92629913/209862120-90ea24b8-41a7-46ce-8c60-639096b507e7.png" title="Details" alt="Details" width="220" height="450"/>&nbsp; <img src="https://user-images.githubusercontent.com/92629913/209862161-c09199c8-991a-4f68-a52a-55f08894f37c.png" title="Details" alt="Details" width="220" height="450"/>&nbsp; <img src="https://user-images.githubusercontent.com/92629913/209862173-d284fcfe-4172-457a-8a94-a5cbcc426fa0.png" title="Details" alt="Details" width="220" height="450"/>&nbsp; 
 
-Thanks for your attention :)
 
 
 
